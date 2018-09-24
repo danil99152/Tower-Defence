@@ -27,3 +27,4 @@ $options->mobs = [
 $game = new Game($options);
 
 print_r($game);
+//test
