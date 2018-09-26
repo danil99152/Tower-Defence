@@ -37,5 +37,12 @@ class Struct {
                 $this->mobs[] = new Mob($mob);
             }
         }
+        //задать летящие выстрелы
+        $this->shots = [];
+        if (isset($options->shots)) {
+            foreach ($options->shots as $shot) {
+                $this->shots[] = new Shot($shot);
+            }
+        }
     }
 }
