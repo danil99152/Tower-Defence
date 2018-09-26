@@ -24,6 +24,10 @@ $options->mobs = [
     (object) array('id' => 1, 'gamerId' => 1, 'x' => 0, 'y' => 0, 'life' => 1500)
 ];
 
+$options->shots = [
+    (object) array('id' => 1, 'gamerId' => 2, 'x' => 1, 'y' => 1, 'speed' => 1)
+];
+
 $game = new Game($options);
 
 print_r($game);
