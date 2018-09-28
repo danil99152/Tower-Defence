@@ -3,6 +3,7 @@
 require_once 'Tile.php';
 require_once 'Tower.php';
 require_once 'Mob.php';
+require_once 'Shot.php';
 
 class Struct {
 
