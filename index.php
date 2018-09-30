@@ -17,7 +17,7 @@ $options->map = [
 ];
 
 $options->towers = [
-    (object) array('id' => 1, 'gamerId' => 2, 'x' => 1, 'y' => 1, 'damage' => 123)
+    (object) array('id' => 1, 'gamerId' => 2, 'x' => 1, 'y' => 1, 'damage' => 123,'speed' => 0)
 ];
 
 $options->mobs = [
