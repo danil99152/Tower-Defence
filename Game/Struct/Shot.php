@@ -10,7 +10,6 @@ class Shot extends Unit
     public function __construct($options)
     {
         parent::__construct($options);
-        $this->speed = $options->speed;
         $this->angle = $options->angle;
     }
 }
