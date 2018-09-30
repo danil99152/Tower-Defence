@@ -15,9 +15,6 @@ class Unit extends BaseElement {
         $this->x       = $options->x;
         $this->y       = $options->y;
         $this->speed  = $options->speed;
-<<<<<<< HEAD
         $this->angle   = $options->angle;
-=======
->>>>>>> c40d8b7de0a0e1db45964285d2724227c5a729b8
     }
 }
