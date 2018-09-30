@@ -4,7 +4,7 @@ require_once "Unit.php";
 
 class Shot extends Unit
 {
-    public $speed; //скорость полета
+     //скорость полета
     public $angle; //угол полета
 
     public function __construct($options)
