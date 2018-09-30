@@ -13,6 +13,6 @@ class Unit extends BaseElement {
         $this->gamerId = $options->gamerId;
         $this->x       = $options->x;
         $this->y       = $options->y;
-        $this->$speed  = $options->speed;
+        $this->speed  = $options->speed;
     }
 }
