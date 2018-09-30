@@ -7,12 +7,14 @@ class Unit extends BaseElement {
     public $x;
     public $y;
     public $speed;
+    public $angle; //угол поворота
 
     public function __construct($options) {
         parent::__construct($options);
         $this->gamerId = $options->gamerId;
         $this->x       = $options->x;
         $this->y       = $options->y;
-        $this->$speed  = $options->speed;
+        $this->speed  = $options->speed;
+        $this->angle   = $options->angle;
     }
 }
