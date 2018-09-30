@@ -21,7 +21,7 @@ $options->towers = [
 ];
 
 $options->mobs = [
-    (object) array('id' => 1, 'gamerId' => 1, 'x' => 0, 'y' => 0, 'life' => 1500)
+    (object) array('id' => 1, 'gamerId' => 1, 'x' => 0, 'y' => 0, 'life' => 1500,'speed' => 1)
 ];
 
 $options->shots = [
