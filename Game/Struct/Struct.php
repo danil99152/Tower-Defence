@@ -7,13 +7,15 @@ require_once 'Shot.php';
 
 class Struct {
 
+    const TOWER_DAMAGE = 500;
+    const TOWER_ANGLE = 0;
+
     public $towers; // список башен
-    public $mobs; // список мобов
-    public $shots; // список летящих выстрелов
-    public $map; // карта
+    public $mobs;   // список мобов
+    public $shots;  // список летящих выстрелов
+    public $map;    // карта
 
     public function __construct($options) {
-
         // задать карту
         $this->map = [];
         if (isset($options->map)) {
@@ -45,5 +47,18 @@ class Struct {
                 $this->shots[] = new Shot($shot);
             }
         }
+    }
+
+    public function addTower($options) {
+        // выбрать новый идентификатор
+        //...
+        $options->id = 123;
+        $options->damage = self::TOWER_DAMAGE;
+        $options->angle = self::TOWER_ANGLE;
+        $this->towers[] = new Tower($options);
+    }
+
+    public function addShot($options) {
+        $this->shots[] = new Shot($options);
     }
 }

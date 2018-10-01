@@ -7,6 +7,6 @@ class Mob extends Unit {
 
     public function __construct($options) {
         parent::__construct($options);
-        $this->life  = $options->life;
+        $this->life = $options->life;
     }
 }
