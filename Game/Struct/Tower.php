@@ -7,6 +7,6 @@ class Tower extends Unit {
 
     public function __construct($options) {
         parent::__construct($options);
-        $this->damage  = $options->damage;
+        $this->damage = $options->damage;
     }
 }
