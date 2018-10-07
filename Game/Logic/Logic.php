@@ -19,8 +19,61 @@ class Logic {
         }
         return null;
     }
+    
+    
+    private function getMob($id){
+        if ($id){
+            $mobs = $this->struct->mobs;
+            foreach ($mobs as $mob){
+                if ($mob->id === $id){
+                    return $mob;
+                }
 
+            }
+
+        }
+        return null;
+    }
     // добавить нового моба
+    public function addMob($gamerId) {
+        $map = $this->struct->map;
+        $mobs = $this->struct->mobs;
+        // проверить, что место для моба ещё имеется
+        $passCount = 0;
+        foreach ($map as $line) {
+            foreach ($line as $tile) {
+                if ($tile->passability === 1) {
+                    $passCount++;
+                }
+            }
+        }
+        if ($passCount > count($mobs)) { // место для мода ещё есть
+            while (true) {
+                $y = rand(0, count($map)-1);
+                $x = rand(0, count($map[0])-1);
+                if ($map[$y][$x]->passability === 0) {
+                    $canAdd = true;
+                    foreach ($mobs as $mob) {
+                        if ($mob->x === $x && $mob->y === $y) {
+                            $canAdd = false;
+                            break;
+                        }
+                    }
+                    if ($canAdd) {
+                        $this->struct->addMob(
+                            (object) array(
+                                'gamerId' => $gamerId,
+                                'x' => $x,
+                                'y' => $y)
+                        );
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     // умереть моба
     // дойти мобом до точки выхода
     // подвинуть моба на 1 клетку
