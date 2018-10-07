@@ -19,8 +19,8 @@ class Logic {
         }
         return null;
     }
-    
-    
+
+
     private function getMob($id){
         if ($id){
             $mobs = $this->struct->mobs;
@@ -75,6 +75,18 @@ class Logic {
     }
 
     // умереть моба
+    public function killMob($id) {
+        $mob = $this->getMob($id);
+        if ($mob) {
+            foreach ($this->struct->mobs as $key => $mob) {
+                if ($mob->id === $id) {
+                    unset($this->struct->mobs[$key]);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     // дойти мобом до точки выхода
     // подвинуть моба на 1 клетку
 
