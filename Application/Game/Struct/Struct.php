@@ -51,7 +51,7 @@ class Struct {
         }
     }
     
-        public function addMob($options) {
+    public function addMob($options) {
         // выбрать новый идентификатор
         //...
         $options->id = 55;
@@ -60,17 +60,6 @@ class Struct {
         $this->towers[] = new Mob($options);
     }
 
-
-        public function addMob($options) {
-        // выбрать новый идентификатор
-        //...
-        $options->id = 55;
-        $options->life = self::MOB_LIFE ;
-        $options->speed = self::MOB_SPEED;
-        $this->towers[] = new Mob($options);
-    }
-
-    
     public function addTower($options) {
         // выбрать новый идентификатор
         //...

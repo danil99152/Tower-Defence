@@ -12,7 +12,7 @@ class Logic {
         if ($id) {
             $towers = $this->struct->towers;
             foreach ($towers as $tower) {
-                if ($tower->id === $id) {
+                if ($tower->id === $id - 0) {
                     return $tower;
                 }
             }
@@ -145,11 +145,13 @@ class Logic {
     }
 
     // повернуть башню на угол
-    public function rotateTower($id = null, $angle = 0) {
-        $tower = $this->getTower($id);
-        if ($tower) {
-            $tower->angle = $angle;
-            return true;
+    public function rotateTower($options) {
+        if ($options) {
+            $tower = $this->getTower($options->id);
+            if ($tower) {
+                $tower->angle = $options->angle;
+                return true;
+            }
         }
         return false;
     }
