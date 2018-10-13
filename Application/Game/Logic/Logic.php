@@ -89,6 +89,17 @@ class Logic {
     }
     // дойти мобом до точки выхода
     // подвинуть моба на 1 клетку
+    public function moveMob($options){
+        if ($options) {
+            $mob = $this->getMob($options->id);
+            if ($mob) {
+                $mob->x = $options->x;
+                $mob->y = $options->y;
+                return true;
+            }
+        }
+        return false;
+    }
 
     // добавить башню
     public function addTower($gamerId) {
