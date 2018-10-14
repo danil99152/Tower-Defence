@@ -88,13 +88,15 @@ class Logic {
         return false;
     }
     // дойти мобом до точки выхода
+
+
     // подвинуть моба на 1 клетку
     public function moveMob($options){
         if ($options) {
             $mob = $this->getMob($options->id);
             if ($mob) {
-                $mob->x = $options->x;
-                $mob->y = $options->y;
+                $mob->x = $options->map->x;
+                $mob->y = $options->map->y;
                 return true;
             }
         }
