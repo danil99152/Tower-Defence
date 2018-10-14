@@ -11,7 +11,7 @@ class Struct {
     const TOWER_ANGLE = 0;
     const MOB_LIFE = 1500;
     const MOB_SPEED = 5;
-
+  
     public $towers; // список башен
     public $mobs;   // список мобов
     public $shots;  // список летящих выстрелов
@@ -50,7 +50,7 @@ class Struct {
             }
         }
     }
-
+    
     public function addMob($options) {
         // выбрать новый идентификатор
         //...
