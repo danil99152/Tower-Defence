@@ -57,7 +57,7 @@ class Struct {
         $options->id = 55;
         $options->life = self::MOB_LIFE ;
         $options->speed = self::MOB_SPEED;
-        $this->towers[] = new Mob($options);
+        $this->mobs[] = new Mob($options);
     }
 
     public function addTower($options) {
