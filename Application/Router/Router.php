@@ -7,9 +7,7 @@ class Router {
     private $game;
 
     public function __construct() {
-
         $options = new stdClass();
-
         $options->map = [
             [
                 (object) array('id' => 1, 'type' => 'mount', 'passability' => 0),
@@ -36,22 +34,42 @@ class Router {
         $options->shots = [
             //(object) array('id' => 1, 'gamerId' => 2, 'x' => 1, 'y' => 1, 'speed' => 1)
         ];
-
         $this->game = new Game($options);
+    }
+
+    private function good($data) {
+        return (object) [
+            'result' => true,
+            'data' => $data
+        ];
+    }
+
+    private function bad($text) {
+        return (object) [
+            'result' => false,
+            'error' => $text
+        ];
     }
 
     public function answer($options) {
         $method = $options->method;
         if ($method) {
+            if ($method === 'getStruct') {
+                return $this->good($this->game->getStruct());
+            }
             $COMMAND = $this->game->getCommand();
             foreach ($COMMAND as $command) {
                 if ($method === $command) {
                     unset($options->method);
-                    return $this->game->executeCommand($command, $options);
+                    if ($this->game->executeCommand($command, $options)) {
+                        return $this->good($this->game->getStruct());
+                    } else {
+                        return $this->bad('fail to execute command ' . $method);
+                    }
                 }
             }
-            return 'game has no have method ' . $method;
+            return $this->bad('game has no have method ' . $method);
         }
-        return 'has no method';
+        return $this->bad('has no method');
     }
 }

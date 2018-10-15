@@ -23,4 +23,8 @@ class Game {
     public function executeCommand($name, $options = null) {
         return $this->input->executeCommand($name, $options);
     }
+
+    public function getStruct() {
+        return $this->struct;
+    }
 }

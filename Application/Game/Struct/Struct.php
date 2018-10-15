@@ -4,7 +4,7 @@ require_once 'Tile.php';
 require_once 'Tower.php';
 require_once 'Mob.php';
 require_once 'Shot.php';
-require_once 'GoOut.php';
+//require_once 'GoOut.php';
 
 class Struct {
 
@@ -27,9 +27,9 @@ class Struct {
                 foreach ($lineMap as $tile) {
                     $this->map[count($this->map) - 1][] = new Tile($tile);
                 }
-                foreach ($lineMap as $goOut){
+                /*foreach ($lineMap as $goOut){
                     $this->map[count($this->map)-1][] = new GoOut($goOut);
-                }
+                }*/
             }
         }
         // задать башни
