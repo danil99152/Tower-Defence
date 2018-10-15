@@ -91,7 +91,7 @@ class Logic {
 
 
     // подвинуть моба на 1 клетку
-    public function moveMob($options){
+    /*public function moveMob($options){
         if ($options) {
             $mob = $this->getMob($options->id);
             if ($mob) {
@@ -101,7 +101,7 @@ class Logic {
             }
         }
         return false;
-    }
+    }*/            //fix it!!!
 
     // добавить башню
     public function addTower($gamerId) {
