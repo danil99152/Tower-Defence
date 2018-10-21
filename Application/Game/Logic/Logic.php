@@ -91,17 +91,10 @@ class Logic {
 
 
     // подвинуть моба на 1 клетку
-    /*public function moveMob($options){
-        if ($options) {
-            $mob = $this->getMob($options->id);
-            if ($mob) {
-                $mob->x = $options->map->x;
-                $mob->y = $options->map->y;
-                return true;
-            }
-        }
-        return false;
-    }*/            //fix it!!!
+    public function moveMob($options)
+    {
+
+    }
 
     // добавить башню
     public function addTower($gamerId) {
@@ -157,6 +150,27 @@ class Logic {
         return false;
     }
 
+    // выстрелить башней
+    public function shoting($id) {
+        $tower = $this->getTower($id);
+        if ($tower) {
+            $this->struct->addShot((object) $tower);
+            return true;
+        }
+        return false;
+    }
+
+    // лететь выстрелом
+  /*  public function shoot($id){
+        $mob = $this->getMob($id);
+        if ($mob){
+            $this->damage($id)->$mob($id);
+            return true;
+        }
+        return false;
+    }
+  */
+
     // повернуть башню на угол
     public function rotateTower($options) {
         if ($options) {
@@ -169,17 +183,16 @@ class Logic {
         return false;
     }
 
-    // выстрелить башней
-    public function shoting($id) {
-        $tower = $this->getTower($id);
-        if ($tower) {
-            $this->struct->addShot((object) $tower);
-            return true;
+    // попасть выстрелом
+    // нанести какой-нибудь урон
+    public function damage($options){
+        if ($options){
+            $mob = $this->getMob($options->id);
+            if ($mob) {
+                $mob->life = $options->life - 1;
+                return true;
+            }
         }
         return false;
     }
-
-    // лететь выстрелом
-    // попасть выстрелом
-    // нанести какой-нибудь урон
 }
