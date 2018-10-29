@@ -1,9 +1,13 @@
 <?php
 
+require_once '..\Application\Modules\DB.php';
+require_once '..\Application\Modules\User.php';
 require_once '..\Application\Game\Game.php';
 
 class Router {
 
+    private $db;
+    private $user;
     private $game;
 
     public function __construct() {
@@ -34,6 +38,9 @@ class Router {
         $options->shots = [
             //(object) array('id' => 1, 'gamerId' => 2, 'x' => 1, 'y' => 1, 'speed' => 1)
         ];
+
+        $this->db = new DB();
+        $this->user = new User($this->db);
         $this->game = new Game($options);
     }
 
@@ -54,6 +61,12 @@ class Router {
     public function answer($options) {
         $method = $options->method;
         if ($method) {
+
+            if ($method === 'login') {
+                $result = $this->user->login($options);
+                return ($result) ? $this->good($result) : $this->bad('authorization fail');
+            }
+
             if ($method === 'getStruct') {
                 return $this->good($this->game->getStruct());
             }
