@@ -66,10 +66,13 @@ class Router {
                 $result = $this->user->login($options);
                 return ($result) ? $this->good($result) : $this->bad('authorization fail');
             }
+<<<<<<< HEAD
             if ($method === 'logout') {
                 $result = $this->user->logout($options);
                 return ($result) ? $this->good($result) : $this->bad('logout fail');
             }
+=======
+>>>>>>> 117f5ac3e0306a2fa148f904e3067e860101d9ee
 
             if ($method === 'getStruct') {
                 return $this->good($this->game->getStruct());

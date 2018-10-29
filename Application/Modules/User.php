@@ -19,6 +19,7 @@ class User {
         }
         return false;
     }
+<<<<<<< HEAD
 
     public function logout($options = null) {
         if ($options && isset($options->token)) {
@@ -29,4 +30,6 @@ class User {
         }
         return false;
     }
+=======
+>>>>>>> 117f5ac3e0306a2fa148f904e3067e860101d9ee
 }
