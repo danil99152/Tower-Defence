@@ -1,6 +1,6 @@
 $(document).ready(async function() {
     const server = new Server();
-    const canvas = new Canvas();
+    /*const canvas = new Canvas();
 
     const result = await server.getStruct();
 
@@ -14,5 +14,20 @@ $(document).ready(async function() {
                 canvas.printRect(i * SIZE, j * SIZE, SIZE, SIZE, color);
             }
         }
-    }
+    }*/
+
+    document.getElementById('auth').onclick = async function () {
+        const login = document.getElementById('login').value;
+        const password = document.getElementById('password').value;
+        if (login && password) {
+            const result  = await server.login(login, password);
+
+            if (result) {
+                console.log('Жизнь удалась!!!');
+            } else {
+                console.log('Ваще все плохо!');
+            }
+        }
+    };
+
 });
