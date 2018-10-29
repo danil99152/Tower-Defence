@@ -19,10 +19,6 @@ class User {
         }
         return false;
     }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 4417a0fdc068f54311761b911d24b6a252f37bc3
 
     public function logout($options = null) {
         if ($options && isset($options->token)) {
@@ -33,9 +29,4 @@ class User {
         }
         return false;
     }
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 117f5ac3e0306a2fa148f904e3067e860101d9ee
->>>>>>> 4417a0fdc068f54311761b911d24b6a252f37bc3
 }
