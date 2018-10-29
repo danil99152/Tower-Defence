@@ -17,6 +17,10 @@ class DB {
         return $this->db->query($query)->fetchObject('stdClass');
     }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 4417a0fdc068f54311761b911d24b6a252f37bc3
     public function getUserByToken($token) {
         $query = 'SELECT * FROM user WHERE token="' . $token . '"';
         return $this->db->query($query)->fetchObject('stdClass');
@@ -31,4 +35,14 @@ class DB {
         $query = 'SELECT * FROM user';
         return $this->db->query($query)->fetchAll(PDO::FETCH_CLASS);
     }
+<<<<<<< HEAD
+=======
+=======
+    public function updateUserToken($id, $token) {
+        $query = 'UPDATE user SET token="' . $token . '" WHERE id=' . $id;
+        return $this->db->query($query);
+    }
+
+>>>>>>> 117f5ac3e0306a2fa148f904e3067e860101d9ee
+>>>>>>> 4417a0fdc068f54311761b911d24b6a252f37bc3
 }
