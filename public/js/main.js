@@ -24,6 +24,9 @@ $(document).ready(async function() {
 
             if (result) {
                 console.log('Жизнь удалась!!!');
+                /*document.getElementById('login').style.display ="none";
+                document.getElementById('password').style.display ="none";
+                document.getElementById('auth').style.display ="none";*/
             } else {
                 console.log('Ваще все плохо!');
             }
