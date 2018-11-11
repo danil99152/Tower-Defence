@@ -29,6 +29,7 @@ $(document).ready(async function() {
                 document.getElementById('auth').style.display ="none";
                 document.getElementById('GS').style.display ="inline";
                 document.getElementById('logout').style.display ="inline";
+                document.getElementById('choise').style.display="inline";
             } else {
                 console.log('Ваще все плохо!');
             }
@@ -43,10 +44,21 @@ $(document).ready(async function() {
         const logout = await server.logout(token);
         if (logout){
             console.log('Чел вышел, токен удален');
+            document.getElementById('login').style.display ="inline";
+            document.getElementById('password').style.display ="inline";
+            document.getElementById('auth').style.display ="inline";
+            document.getElementById('GS').style.display ="none";
+            document.getElementById('logout').style.display ="none";
+            document.getElementById('choise').style.display="none";
         }
     };
 
     document.getElementById('GS').onclick = async function () {
-
+        const login = document.getElementById('login').value;
+        const password = document.getElementById('password').value;
+        const result = await $.get('api', { method: 'login', login, password });
+        const token = result.data;
+        const choice = document.getElementById('choise').value;
+        start = await server.getStruct(token, choice);
     };
 });

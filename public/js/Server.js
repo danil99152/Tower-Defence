@@ -6,8 +6,8 @@ function Server() {
         return $.get('api', { method: 'rotateTower', id, angle, token });
     };
 
-    this.getStruct =  function () {
-        return $.get('api', { method: 'getStruct', token });
+    this.getStruct =  function (token, choise) {
+        return $.get('api', { method: 'getStruct', token, choise, });
     };
 
     this.login = async function (login, password) {
