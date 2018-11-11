@@ -21,7 +21,6 @@ $(document).ready(async function() {
         const password = document.getElementById('password').value;
         if (login && password) {
             const result  = await server.login(login, password);
-
             if (result) {
                 console.log('Жизнь удалась!!!');
                 
@@ -29,11 +28,25 @@ $(document).ready(async function() {
                 document.getElementById('password').style.display ="none";
                 document.getElementById('auth').style.display ="none";
                 document.getElementById('GS').style.display ="inline";
-                
+                document.getElementById('logout').style.display ="inline";
             } else {
                 console.log('Ваще все плохо!');
             }
         }
     };
 
+    document.getElementById('logout').onclick = async function () {
+        const login = document.getElementById('login').value;
+        const password = document.getElementById('password').value;
+        const result = await $.get('api', { method: 'login', login, password });
+        const token = result.data;
+        const logout = await server.logout(token);
+        if (logout){
+            console.log('Чел вышел, токен удален');
+        }
+    };
+
+    document.getElementById('GS').onclick = async function () {
+
+    };
 });

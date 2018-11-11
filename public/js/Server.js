@@ -17,4 +17,9 @@ function Server() {
         }
         return result.result;
     };
+
+    this.logout = async function (token) {
+        const logout = await $.get('api', { method: 'logout', token});
+        return logout;
+    };
 }
