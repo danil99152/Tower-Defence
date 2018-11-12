@@ -14,5 +14,44 @@ $(document).ready(async function() {
                 canvas.printRect(i * SIZE, j * SIZE, SIZE, SIZE, color);
             }
         }
+<<<<<<< HEAD
     }
 });
+=======
+    }*/
+
+    document.getElementById('auth').onclick = async function () {
+        const login = document.getElementById('login').value;
+        const password = document.getElementById('password').value;
+        if (login && password) {
+            const result  = await server.login(login, password);
+            if (result) {
+                console.log('Жизнь удалась!!!');
+                
+                document.getElementById('login').style.display ="none";
+                document.getElementById('password').style.display ="none";
+                document.getElementById('auth').style.display ="none";
+                document.getElementById('GS').style.display ="inline";
+                document.getElementById('logout').style.display ="inline";
+            } else {
+                console.log('Ваще все плохо!');
+            }
+        }
+    };
+
+    document.getElementById('logout').onclick = async function () {
+        const login = document.getElementById('login').value;
+        const password = document.getElementById('password').value;
+        const result = await $.get('api', { method: 'login', login, password });
+        const token = result.data;
+        const logout = await server.logout(token);
+        if (logout){
+            console.log('Чел вышел, токен удален');
+        }
+    };
+
+    document.getElementById('GS').onclick = async function () {
+
+    };
+});
+>>>>>>> parent of a708a93... Добавлены методы в BD, настроена кнопка "Начать игру"
