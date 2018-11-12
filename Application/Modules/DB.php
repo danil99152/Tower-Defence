@@ -32,6 +32,7 @@ class DB {
         return $this->db->query($query)->fetchAll(PDO::FETCH_CLASS);
     }
 
+<<<<<<< HEAD
     public function getMap($id) {
         $query = 'SELECT * FROM map WHERE id=' . $id;
         return $this->db->query($query)->fetchObject('stdClass');
@@ -39,6 +40,10 @@ class DB {
 
     public function getTiles($id) {
         $query = 'SELECT * FROM tile WHERE map_id=' . $id;
+=======
+    public function getMap() {
+        $query = 'SELECT * FROM map';
+>>>>>>> a708a937b73539abead501b7a1ff3968627b57ff
         return $this->db->query($query)->fetchAll(PDO::FETCH_CLASS);
     }
 

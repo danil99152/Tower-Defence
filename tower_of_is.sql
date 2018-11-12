@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
+<<<<<<< HEAD
 -- Время создания: Ноя 12 2018 г., 09:30
+=======
+-- Время создания: Окт 22 2018 г., 09:04
+>>>>>>> a708a937b73539abead501b7a1ff3968627b57ff
 -- Версия сервера: 5.6.38
 -- Версия PHP: 7.2.0
 
@@ -34,6 +38,7 @@ CREATE TABLE `map` (
   `size_y` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+<<<<<<< HEAD
 --
 -- Дамп данных таблицы `map`
 --
@@ -41,6 +46,8 @@ CREATE TABLE `map` (
 INSERT INTO `map` (`id`, `size_x`, `size_y`) VALUES
 (1, 3, 3);
 
+=======
+>>>>>>> a708a937b73539abead501b7a1ff3968627b57ff
 -- --------------------------------------------------------
 
 --
@@ -49,11 +56,15 @@ INSERT INTO `map` (`id`, `size_x`, `size_y`) VALUES
 
 CREATE TABLE `mob` (
   `id` int(11) NOT NULL,
+<<<<<<< HEAD
   `user_id` varchar(45) NOT NULL,
   `life` varchar(45) NOT NULL,
   `x` varchar(45) DEFAULT NULL,
   `y` varchar(45) DEFAULT NULL,
   `speed` varchar(45) DEFAULT NULL
+=======
+  `user_id` varchar(45) NOT NULL
+>>>>>>> a708a937b73539abead501b7a1ff3968627b57ff
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -63,11 +74,15 @@ CREATE TABLE `mob` (
 --
 
 CREATE TABLE `shot` (
+<<<<<<< HEAD
   `id` int(11) NOT NULL,
   `angle` varchar(45) NOT NULL,
   `x` varchar(45) DEFAULT NULL,
   `y` varchar(45) DEFAULT NULL,
   `speed` varchar(45) NOT NULL
+=======
+  `id` int(11) NOT NULL
+>>>>>>> a708a937b73539abead501b7a1ff3968627b57ff
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -79,6 +94,7 @@ CREATE TABLE `shot` (
 CREATE TABLE `tile` (
   `id` int(11) NOT NULL,
   `map_id` varchar(45) NOT NULL,
+<<<<<<< HEAD
   `x` int(11) NOT NULL,
   `y` int(11) NOT NULL,
   `passability` varchar(45) NOT NULL,
@@ -101,6 +117,12 @@ INSERT INTO `tile` (`id`, `map_id`, `x`, `y`, `passability`, `sprite`, `type`) V
 (8, '1', 2, 1, '0', '', 'mount'),
 (9, '1', 2, 2, '0', '', 'mount');
 
+=======
+  `x` int(11) DEFAULT NULL,
+  `y` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+>>>>>>> a708a937b73539abead501b7a1ff3968627b57ff
 -- --------------------------------------------------------
 
 --
@@ -110,10 +132,14 @@ INSERT INTO `tile` (`id`, `map_id`, `x`, `y`, `passability`, `sprite`, `type`) V
 CREATE TABLE `tower` (
   `id` int(11) NOT NULL,
   `user_id` varchar(45) NOT NULL,
+<<<<<<< HEAD
   `damage` varchar(45) NOT NULL,
   `x` varchar(45) DEFAULT NULL,
   `y` varchar(45) DEFAULT NULL,
   `angle` varchar(45) NOT NULL
+=======
+  `towercol` varchar(45) DEFAULT NULL
+>>>>>>> a708a937b73539abead501b7a1ff3968627b57ff
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -135,8 +161,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `login`, `password`, `token`) VALUES
+<<<<<<< HEAD
 (1, 'вася', 'vasya', '123', 'fc5a99244b9a559d931c9f2e3a395575'),
 (2, 'Петя', 'peya', '123', '');
+=======
+(1, 'qaz', '8254', '857', NULL),
+(2, 'qwe`', 'hq', '123', NULL);
+>>>>>>> a708a937b73539abead501b7a1ff3968627b57ff
 
 --
 -- Индексы сохранённых таблиц
@@ -169,7 +200,12 @@ ALTER TABLE `shot`
 --
 ALTER TABLE `tile`
   ADD PRIMARY KEY (`id`),
+<<<<<<< HEAD
   ADD UNIQUE KEY `id_UNIQUE` (`id`);
+=======
+  ADD UNIQUE KEY `id_UNIQUE` (`id`),
+  ADD UNIQUE KEY `map_id_UNIQUE` (`map_id`);
+>>>>>>> a708a937b73539abead501b7a1ff3968627b57ff
 
 --
 -- Индексы таблицы `tower`
@@ -194,7 +230,11 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `map`
 --
 ALTER TABLE `map`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> a708a937b73539abead501b7a1ff3968627b57ff
 
 --
 -- AUTO_INCREMENT для таблицы `mob`
@@ -212,7 +252,11 @@ ALTER TABLE `shot`
 -- AUTO_INCREMENT для таблицы `tile`
 --
 ALTER TABLE `tile`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> a708a937b73539abead501b7a1ff3968627b57ff
 
 --
 -- AUTO_INCREMENT для таблицы `tower`
