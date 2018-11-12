@@ -9,6 +9,9 @@ function Server() {
 
     this.getStruct =  function () {
         return $.get('api', { method: 'getStruct', token });
+<<<<<<< HEAD
+>>>>>>> parent of a708a93... Добавлены методы в BD, настроена кнопка "Начать игру"
+=======
 >>>>>>> parent of a708a93... Добавлены методы в BD, настроена кнопка "Начать игру"
     };
 
