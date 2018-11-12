@@ -18,9 +18,20 @@ class Struct {
     public $shots;  // список летящих выстрелов
     public $map;    // карта
 
-    public function __construct() {
-        /*// задать карту
-
+    public function __construct($options) {
+        // задать карту
+        $this->map = [];
+        if (isset($options->map)) {
+            foreach ($options->map as $lineMap) {
+                $this->map[] = [];
+                foreach ($lineMap as $tile) {
+                    $this->map[count($this->map) - 1][] = new Tile($tile);
+                }
+                /*foreach ($lineMap as $goOut){
+                    $this->map[count($this->map)-1][] = new GoOut($goOut);
+                }*/
+            }
+        }
         // задать башни
         $this->towers = [];
         if (isset($options->towers)) {
@@ -41,7 +52,7 @@ class Struct {
             foreach ($options->shots as $shot) {
                 $this->shots[] = new Shot($shot);
             }
-        }*/
+        }
     }
     
     public function addMob($options) {
@@ -64,19 +75,5 @@ class Struct {
 
     public function addShot($options) {
         $this->shots[] = new Shot($options);
-    }
-
-    public function setMap($map, $sizeX, $sizeY) {
-        $this->map = [];
-        if ($map) {
-            $num = 0;
-            for ($i = 0; $i < $sizeX; $i++) {
-                $this->map[$i] = [];
-                for ($j = 0; $j < $sizeY; $j++) {
-                    $this->map[$i][$j] = new Tile($map[$num]);
-                    $num++;
-                }
-            }
-        }
     }
 }
