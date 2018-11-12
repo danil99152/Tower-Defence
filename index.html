@@ -10,6 +10,17 @@
 </head>
 <body>
     <h1>Tower Defense of IS-21</h1>
+    <div>
+        <div id="choise" style="display: none">
+            <p><input id="mob" name = "choise" type="radio" value="mob">Моб</p>
+            <p><input id="tower" name = "choise" type="radio" value="tower">Башня</p>
+        </div>
+        <input id="GS" type="button" value="Начать игру" style="display: none" >
+        <input id="logout" type="button" value="Выйти из игры" style="display: none" >
+        <input id="login" type="text" placeholder="login" ><br>
+        <input id="password" type="password" placeholder="password" ><br>
+        <input id="auth" type="button" value="Войти" >
+    </div>
     <canvas id="game-field"></canvas>
 </body>
 </html>
