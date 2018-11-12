@@ -1,22 +1,24 @@
 function Server() {
 
-    this.rotateTower = function (id, angle) {
-<<<<<<< HEAD
-        return $.get('api', { method: 'rotateTower', id, angle });
-=======
-        return $.get('api', { method: 'rotateTower', id, angle, token });
+    let token;
+
+    this.rotateTower = function (angle) {
+        return $.get('api', { method: 'rotateTower', angle, token });
     };
 
-    this.getStruct =  function () {
+    this.getStruct = function () {
         return $.get('api', { method: 'getStruct', token });
-<<<<<<< HEAD
->>>>>>> parent of a708a93... Добавлены методы в BD, настроена кнопка "Начать игру"
-=======
->>>>>>> parent of a708a93... Добавлены методы в BD, настроена кнопка "Начать игру"
     };
 
-    this.getStruct =  function () {
-        return $.get('api', { method: 'getStruct' });
+    this.login = async function (login, password) {
+        const result = await $.get('api', { method: 'login', login, password });
+        if (result.result) {
+            token = result.data;
+        }
+        return result.result;
     };
 
+    this.logout = function () {
+        return $.get('api', { method: 'logout', token});
+    };
 }
