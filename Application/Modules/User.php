@@ -29,7 +29,6 @@ class User {
         }
         return false;
     }
-<<<<<<< HEAD
 
     public function checkToken($options = null) {
         if ($options && isset($options->token)) {
@@ -40,6 +39,4 @@ class User {
         }
         return false;
     }
-=======
->>>>>>> a708a937b73539abead501b7a1ff3968627b57ff
 }

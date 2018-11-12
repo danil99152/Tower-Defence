@@ -1,6 +1,6 @@
 $(document).ready(async function() {
     const server = new Server();
-    /*const canvas = new Canvas();
+    const canvas = new Canvas();
 
     function render(data) {
         const SIZE = 40;
@@ -12,11 +12,7 @@ $(document).ready(async function() {
                 canvas.printRect(i * SIZE, j * SIZE, SIZE, SIZE, color);
             }
         }
-<<<<<<< HEAD
     }
-=======
-    }*/
->>>>>>> a708a937b73539abead501b7a1ff3968627b57ff
 
     document.getElementById('auth').onclick = async function () {
         const login = document.getElementById('login').value;
@@ -56,7 +52,6 @@ $(document).ready(async function() {
     };
 
     document.getElementById('GS').onclick = async function () {
-<<<<<<< HEAD
         // выставить игроку его выбранный режим игры
         // запустить интервал обновления данных на клиенте (запрашивать getStruct)
         // скрыть элементы управления, показать карту
@@ -64,13 +59,5 @@ $(document).ready(async function() {
         if (result.result) {
             render(result.data);
         }
-=======
-        const login = document.getElementById('login').value;
-        const password = document.getElementById('password').value;
-        const result = await $.get('api', { method: 'login', login, password });
-        const token = result.data;
-        const choice = document.getElementById('choise').value;
-        start = await server.getStruct(token, choice);
->>>>>>> a708a937b73539abead501b7a1ff3968627b57ff
     };
 });
