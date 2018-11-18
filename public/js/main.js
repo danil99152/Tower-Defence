@@ -21,13 +21,10 @@ $(document).ready(async function() {
             const result  = await server.login(login, password);
             if (result) {
                 console.log('Жизнь удалась!!!');
-                
-                document.getElementById('login').style.display ="none";
-                document.getElementById('password').style.display ="none";
-                document.getElementById('auth').style.display ="none";
-                document.getElementById('GS').style.display ="inline";
-                document.getElementById('logout').style.display ="inline";
-                document.getElementById('choise').style.display="inline";
+				
+                document.getElementsByClassName('game-menu').style.display ="inline";
+                document.getElementsByClassName('log-in').style.display ="none";
+				
             } else {
                 console.log('Ваще все плохо!');
             }
@@ -42,12 +39,10 @@ $(document).ready(async function() {
         const logout = await server.logout(token);
         if (logout){
             console.log('Чел вышел, токен удален');
-            document.getElementById('login').style.display ="inline";
-            document.getElementById('password').style.display ="inline";
-            document.getElementById('auth').style.display ="inline";
-            document.getElementById('GS').style.display ="none";
-            document.getElementById('logout').style.display ="none";
-            document.getElementById('choise').style.display="none";
+			
+			document.getElementsByClassName('game-menu').style.display ="none";
+            document.getElementsByClassName('log-in').style.display ="inline";
+            
         }
     };
 
@@ -55,9 +50,18 @@ $(document).ready(async function() {
         // выставить игроку его выбранный режим игры
         // запустить интервал обновления данных на клиенте (запрашивать getStruct)
         // скрыть элементы управления, показать карту
+		const gs = document.getElementById('GS').value;
         const result = await server.getStruct();
+		const token = result.data;
+		const logout = await server.logout(token);
         if (result.result) {
             render(result.data);
+			if (render(result.data)){
+				document.getElementsByClassName('game-menu').style.display ="none";
+			}
         }
+		if (logout){
+
+		}
     };
 });

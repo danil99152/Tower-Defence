@@ -3,24 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>Tower Defense of IS-21</title>
-    <script src="public/js/jquery-3.3.1.min.js"></script>
-    <script src="public/js/Server.js"></script>
-    <script src="public/js/Canvas.js"></script>
+    <script src="public/js/vendor/jquery-3.3.1.min.js"></script>
+    <script src="public/js/server/Server.js"></script>
+    <script src="public/js/game/Canvas.js"></script>
     <script src="public/js/main.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="public/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="icon" href="public/img/indexImages/favicon.png" type="images/png">
 </head>
 <body>
-    <h1>Tower Defense of IS-21</h1>
-    <div>
-        <div id="choise" style="display: none">
-            <p><input id="mob" name = "choise" type="radio" value="mob">Моб</p>
-            <p><input id="tower" name = "choise" type="radio" value="tower">Башня</p>
+
+	<header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                        <div class="logo"></div> 
+                </div>
+            </div>
         </div>
-        <input id="GS" type="button" value="Начать игру" style="display: none" >
-        <input id="logout" type="button" value="Выйти из игры" style="display: none" >
-        <input id="login" type="text" placeholder="login" ><br>
-        <input id="password" type="password" placeholder="password" ><br>
-        <input id="auth" type="button" value="Войти" >
+    </header>
+	
+    <div id="options" align="center">
+		
+		<div class="game-menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						
+					</div>
+					
+					<div class="col-md-4">
+						<div id="offer" align="center">
+							<div id="choise" style="display: none">
+								<p><input id="mob" name = "choise" type="radio" value="mob">Моб</p>
+								<p><input id="tower" name = "choise" type="radio" value="tower">Башня</p>
+							</div>
+							<input id="GS" type="button" value="Начать игру" style="display: none">
+							<input id="logout" type="button" value="Выйти из игры" style="display: none">
+						</div>
+					</div>
+					
+					<div class="col-md-4">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+        
+		<div class="log-in">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						
+					</div>
+					
+					<div class="col-md-4">
+						<div id="user" align="center">
+							<span class="text">Авторизация</span><br>
+							<input id="login" type="text" placeholder="login" /><br>
+							<input id="password" type="password" placeholder="password" /><br>
+							<input id="auth" type="button" value="Войти"/>
+						</div>
+					</div>
+					
+					<div class="col-md-4">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
     </div>
-    <canvas id="game-field"></canvas>
+	    
+		<div align="center">             
+			<canvas id="game-field"></canvas>
+		</div>
+		
 </body>
 </html>
