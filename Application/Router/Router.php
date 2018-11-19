@@ -44,7 +44,7 @@ class Router {
             $userId = $this->user->checkToken($options);
             //$userId = true;
             if ($userId) {
-                $this->game->init();
+                $this->game->init(1);
                 if ($method === 'getStruct') {
                     return $this->good($this->game->getStruct());
                 }

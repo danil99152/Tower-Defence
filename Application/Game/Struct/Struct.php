@@ -22,26 +22,10 @@ class Struct {
         /*// задать карту
 
         // задать башни
-        $this->towers = [];
-        if (isset($options->towers)) {
-            foreach ($options->towers as $tower) {
-                $this->towers[] = new Tower($tower);
-            }
-        }
-        // задать мобов
-        $this->mobs = [];
-        if (isset($options->mobs)) {
-            foreach ($options->mobs as $mob) {
-                $this->mobs[] = new Mob($mob);
-            }
-        }
+
+
         //задать летящие выстрелы
-        $this->shots = [];
-        if (isset($options->shots)) {
-            foreach ($options->shots as $shot) {
-                $this->shots[] = new Shot($shot);
-            }
-        }*/
+        */
     }
     
     public function addMob($options) {
@@ -77,6 +61,30 @@ class Struct {
                     $num++;
                 }
             }
+        }
+    }
+
+    public function setMobs($mobs){
+        $this->mobs = [];
+        foreach ($mobs as $mob) {
+            $mob->gamerId = $mob->user_id;
+            $this->mobs[] = new Mob($mob);
+        }
+    }
+
+    public function setTowers($towers){
+        $this->towers = [];
+        foreach ($towers as $tower) {
+            $tower->gamerId = $tower->user_id;
+            $this->towers[] = new Tower($tower);
+        }
+    }
+
+    public function setShots($shots){
+        $this->shots = [];
+        foreach ($shots as $shot) {
+            $shot->gamerId = $shot->user_id;
+            $this->shots[] = new Shot($shot);
         }
     }
 }

@@ -60,11 +60,16 @@ class Game {
         return $this->struct;
     }
 
-    public function init() {
-        $map = $this->db->getMap(1);
+    public function init($mapId) {
+        $map = $this->db->getMap($mapId);
         $tiles = $this->db->getTiles($map->id);
         $this->struct->setMap($tiles, $map->size_x, $map->size_y);
-        //...
+        $mobs = $this->db->getMobs();
+        $this->struct->setMobs($mobs);
+        $shots = $this->db->getShots();
+        $this->struct->setShots($shots);
+        $towers = $this->db->getTowers();
+        $this->struct->setTowers($towers);
     }
 
     public function update() {

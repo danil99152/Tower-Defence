@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 12 2018 г., 09:30
+-- Время создания: Ноя 19 2018 г., 09:34
 -- Версия сервера: 5.6.38
 -- Версия PHP: 7.2.0
 
@@ -56,6 +56,13 @@ CREATE TABLE `mob` (
   `speed` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `mob`
+--
+
+INSERT INTO `mob` (`id`, `user_id`, `life`, `x`, `y`, `speed`) VALUES
+(1, '1', '100', '1', '1', '0');
+
 -- --------------------------------------------------------
 
 --
@@ -67,8 +74,16 @@ CREATE TABLE `shot` (
   `angle` varchar(45) NOT NULL,
   `x` varchar(45) DEFAULT NULL,
   `y` varchar(45) DEFAULT NULL,
-  `speed` varchar(45) NOT NULL
+  `speed` varchar(45) NOT NULL,
+  `user_id` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `shot`
+--
+
+INSERT INTO `shot` (`id`, `angle`, `x`, `y`, `speed`, `user_id`) VALUES
+(1, '0.5', '2', '2', '10000', '2');
 
 -- --------------------------------------------------------
 
@@ -116,6 +131,13 @@ CREATE TABLE `tower` (
   `angle` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `tower`
+--
+
+INSERT INTO `tower` (`id`, `user_id`, `damage`, `x`, `y`, `angle`) VALUES
+(1, '2', '100000', '2', '2', '0.5');
+
 -- --------------------------------------------------------
 
 --
@@ -135,7 +157,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `login`, `password`, `token`) VALUES
-(1, 'вася', 'vasya', '123', 'fc5a99244b9a559d931c9f2e3a395575'),
+(1, 'вася', 'vasya', '123', '8abd9cbd0eba96d21f77ca3a93fa9b17'),
 (2, 'Петя', 'peya', '123', '');
 
 --
@@ -162,7 +184,8 @@ ALTER TABLE `mob`
 -- Индексы таблицы `shot`
 --
 ALTER TABLE `shot`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `gamerId_UNIQUE` (`user_id`);
 
 --
 -- Индексы таблицы `tile`
@@ -200,13 +223,13 @@ ALTER TABLE `map`
 -- AUTO_INCREMENT для таблицы `mob`
 --
 ALTER TABLE `mob`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `shot`
 --
 ALTER TABLE `shot`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `tile`
@@ -218,7 +241,7 @@ ALTER TABLE `tile`
 -- AUTO_INCREMENT для таблицы `tower`
 --
 ALTER TABLE `tower`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `user`

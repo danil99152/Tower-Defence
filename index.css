@@ -1,3 +1,21 @@
+body {
+	background-image: url(public/img/indexImages/backgroundImage.png);
+	width: 100%;
+	height: auto;
+	background-size: cover;
+}
+
+header {
+	background-image: url(public/img/indexImages/headerBackground.jpg);
+	border: 20px solid transparent;
+	border-image: url(public/img/indexImages/borderAuth.png) 20;
+	max-width: 98%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.4);
+	margin: 15px auto;
+}
+
 *{
 	margin: 0;
 	padding: 0;
@@ -29,7 +47,6 @@ input {
 	height: 100%;
 }
 
-
 .right_sidebar>.btn {
 	width: 70px;
 	height: 70px;
@@ -54,13 +71,6 @@ input {
 	margin-left: 58px;
 }
 
-body {
-	background-image: url(public/img/indexImages/backgroundImage.png);
-	width: 100%;
-	height: auto;
-	background-size: cover;
-}
-
 .logo {
 	background: url(public/img/indexImages/headerLogo.png);
 	height: 90px;
@@ -68,19 +78,6 @@ body {
 	margin: auto;
 	background-size: cover;
 }
-
-header {
-	background-image: url(public/img/indexImages/headerBackground.jpg);
-	border: 20px solid transparent;
-	border-image: url(public/img/indexImages/borderAuth.png) 20;
-	max-width: 98%;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.4);
-	margin: 15px auto;
-
-}
-
 
 #user {
 	border: 20px solid transparent;

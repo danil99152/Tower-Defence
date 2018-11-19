@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Tower Defense of IS-21</title>
+
+	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="public/bootstrap/css/bootstrap-grid.min.css">
+	<link rel="icon" href="public/img/indexImages/favicon.png" type="images/png">
+
     <script src="public/js/vendor/jquery-3.3.1.min.js"></script>
     <script src="public/js/server/Server.js"></script>
     <script src="public/js/game/Canvas.js"></script>
+	<script src="public/js/game/Game.js"></script>
+	<script src="public/js/user/User.js"></script>
     <script src="public/js/main.js"></script>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="public/bootstrap/css/bootstrap-grid.min.css">
-    <link rel="icon" href="public/img/indexImages/favicon.png" type="images/png">
 </head>
 <body>
-
 	<header>
         <div class="container">
             <div class="row">
@@ -22,41 +25,11 @@
             </div>
         </div>
     </header>
-	
     <div id="options" align="center">
-		
-		<div class="game-menu">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						
-					</div>
-					
-					<div class="col-md-4">
-						<div id="offer" align="center">
-							<div id="choise" style="display: none">
-								<p><input id="mob" name = "choise" type="radio" value="mob">Моб</p>
-								<p><input id="tower" name = "choise" type="radio" value="tower">Башня</p>
-							</div>
-							<input id="GS" type="button" value="Начать игру" style="display: none">
-							<input id="logout" type="button" value="Выйти из игры" style="display: none">
-						</div>
-					</div>
-					
-					<div class="col-md-4">
-						
-					</div>
-				</div>
-			</div>
-		</div>
-        
 		<div class="log-in">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4">
-						
-					</div>
-					
+					<div class="col-md-4"></div>
 					<div class="col-md-4">
 						<div id="user" align="center">
 							<span class="text">Авторизация</span><br>
@@ -65,19 +38,31 @@
 							<input id="auth" type="button" value="Войти"/>
 						</div>
 					</div>
-					
-					<div class="col-md-4">
-						
-					</div>
+					<div class="col-md-4"></div>
 				</div>
 			</div>
 		</div>
-		
-    </div>
-	    
-		<div align="center">             
+		<div class="game-menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<div id="offer" align="center">
+							<div id="choise">
+								<p><input id="mob" name = "choise" type="radio" value="mob">Моб</p>
+								<p><input id="tower" name = "choise" type="radio" value="tower">Башня</p>
+							</div>
+							<input id="gameStart" type="button" value="Начать игру">
+							<input id="logout" type="button" value="Выйти из игры">
+						</div>
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+		</div>
+		<div align="center">
 			<canvas id="game-field"></canvas>
 		</div>
-		
+	</div>
 </body>
 </html>
