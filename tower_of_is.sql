@@ -75,7 +75,9 @@ CREATE TABLE `shot` (
   `x` varchar(45) DEFAULT NULL,
   `y` varchar(45) DEFAULT NULL,
   `speed` varchar(45) NOT NULL,
-  `user_id` varchar(45) NOT NULL
+  `user_id` varchar(45) NOT NULL,
+  `tower_id` varchar(45) NOT NULL,
+  `status` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -185,7 +187,8 @@ ALTER TABLE `mob`
 --
 ALTER TABLE `shot`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `gamerId_UNIQUE` (`user_id`);
+  ADD UNIQUE KEY `gamerId_UNIQUE` (`user_id`),
+  ADD UNIQUE KEY `towerId_UNIQUE` (`tower_id`);
 
 --
 -- Индексы таблицы `tile`
