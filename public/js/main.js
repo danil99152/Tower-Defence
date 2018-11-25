@@ -5,10 +5,12 @@ $(document).ready(async function() {
 
     function loginSuccess() {
         showPage('game-menu');
+        $("header").slideToggle(500);
     }
 
     function logoutSuccess() {
         showPage('log-in');
+        $("header").show();
     }
 
     function showPage(className) {
