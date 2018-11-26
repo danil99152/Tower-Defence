@@ -111,27 +111,44 @@ function Game(options) {
     }
 
     async function refresh() {
+        // послать запрос на сервер и отрисовать полученные данные
         const result = await server.getStruct();
         if (result.result) {
             render(result.data);
         }
     }
 
+    this.init = () => {
+        refresh();
+        this.deinit();
+        interval = setInterval(refresh, 1000);
+    };
+
+    this.deinit = () => {
+        if (interval) {
+            clearInterval(interval);
+        }
+    };
+
     function init() {
 
         $('.game-menu').show();
         $('#game').hide();
 
+
+        // Проверить, что игрок ВЫБРАЛ за кого собрался играть!!!
         $('#gameStart').on('click', () => {
-            // Проверить, что игрок ВЫБРАЛ за кого собрался играть!!!
-            //...
+            const result = server.getStruct();
+            if (result.result) {
+                render(result.data);
+            }
             $('.game-menu').hide();
             $('#game').show();
-
             refresh();
         });
 
         document.getElementById('gameStart').onclick = async function () {
+            refresh();
         };
     }
     init();

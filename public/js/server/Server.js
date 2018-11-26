@@ -21,4 +21,8 @@ function Server() {
     this.logout = function () {
         return $.get('api', { method: 'logout', token});
     };
+
+/*    this.gameStart = function(){
+        return $.get('api', { method: 'gameStart'  , token});
+    };*/
 }

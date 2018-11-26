@@ -72,7 +72,20 @@ class Game {
         $this->struct->setTowers($towers);
     }
 
-    public function update() {
-
+    // записать измененные данные в БД
+    public function update($mapId) {
+        if ($mapId) {
+            $map = $this->db->getMap($mapId);
+            if ($map) {
+                // записать башни
+                $this->db->updateTowers($mapId, $this->struct->towers);
+                // записать города
+                $this->db->updateMobs($mapId, $this->struct->mobs);
+                // записать выстрелы
+                $this->db->updateShots($mapId, $this->struct->shots);
+                return true;
+            }
+        }
+        return false;
     }
 }
