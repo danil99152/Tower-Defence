@@ -15,11 +15,11 @@ function Game(options) {
 
     // спрайты мобов на карте
     const imgMob = new Image();
-    imgMob.src = "public/img/sprites/mob_50x90";
+    imgMob.src = "public/img/sprites/mob_50x90.png";
 
     // спрайты дорог на карте
     const imgRoad = new Image();
-    imgRoad.src = "public/img/sprites/roads_32x32"
+    imgRoad.src = "public/img/sprites/roads_32x32.png"
 
     const SIZE = 32;
     const SPRITES = {
