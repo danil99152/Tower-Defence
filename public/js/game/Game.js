@@ -104,8 +104,8 @@ function Game(options) {
         }
         //нарисовать мобов на карте
         data.mobs.forEach(mob => printMobSprite(mob));
-        // нарисовать природу
-        data.roads.forEach(road => printRoadSprite(road));
+        // нарисовать дороги(через passability)
+        //data.roads.forEach(road => printRoadSprite(road));
         // нарисовать башни на карте
         data.towers.forEach(tower => printTowerSprite(tower));
     }
