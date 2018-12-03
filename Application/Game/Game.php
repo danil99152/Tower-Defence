@@ -13,39 +13,30 @@ class Game {
 
     public function __construct($db) {
         $this->db = $db;
-
-        /*$options = new stdClass();
-        $options->map = [
-            [
-                (object) array('id' => 1, 'type' => 'mount', 'passability' => 0),
-                (object) array('id' => 2, 'type' => 'grass', 'passability' => 1),
-                (object) array('id' => 1, 'type' => 'grass', 'passability' => 1)
-            ],
-            [
-                (object) array('id' => 1, 'type' => 'grass', 'passability' => 1),
-                (object) array('id' => 2, 'type' => 'mount', 'passability' => 0),
-                (object) array('id' => 1, 'type' => 'grass', 'passability' => 1)
-            ],
-            [
-                (object) array('id' => 1, 'type' => 'grass', 'passability' => 1),
-                (object) array('id' => 1, 'type' => 'grass', 'passability' => 1),
-                (object) array('id' => 2, 'type' => 'mount', 'passability' => 0)
-            ]
-        ];
-        $options->towers = [
-            (object) array('id' => 1, 'gamerId' => 2, 'x' => 1, 'y' => 1, 'damage' => 123,'speed' => 0)
-        ];
-        $options->mobs = [
-            (object) array('id' => 1, 'gamerId' => 1, 'x' => 0, 'y' => 0, 'life' => 1500,'speed' => 1)
-        ];
-        $options->shots = [
-            //(object) array('id' => 1, 'gamerId' => 2, 'x' => 1, 'y' => 1, 'speed' => 1)
-        ];
-*/
-
         $this->struct = new Struct();
         $this->logic  = new Logic($this->struct);
         $this->input  = new Input($this->logic);
+    }
+
+    private function addTower($userId) {
+        // удалить все старые башни пользователя из БД (и из структуры)
+        $this->db->deleteTower($userId);
+        // создать новую башню
+        $this->struct->setTowers($userId);
+        // добавить башню в структуру
+        $this->struct->addTower($userId);
+        // добавить башню в БД
+        $this->db->addTower($userId);
+        return true;
+    }
+
+    private function addMob($userId) {
+        //...
+        $this->struct->setMobs($userId);
+        $this->db->deleteMob($userId);
+        $this->struct->addMob($userId);
+        $this->db->addMob($userId);
+        return true;
     }
 
     public function getCommand() {
@@ -53,6 +44,11 @@ class Game {
     }
 
     public function executeCommand($name, $options = null) {
+        $COMMANDS = $this->input->getCommand();
+        switch ($name) {
+            case $COMMANDS->ADD_TOWER: return $this->addTower($options->userId);
+            case $COMMANDS->ADD_MOB  : return $this->addMob($options->userId);
+        }
         return $this->input->executeCommand($name, $options);
     }
 

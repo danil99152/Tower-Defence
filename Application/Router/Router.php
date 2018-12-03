@@ -44,6 +44,7 @@ class Router {
             $userId = $this->user->checkToken($options);
             //$userId = true;
             if ($userId) {
+                $options->userId = $userId;
                 $this->game->init(1);
                 if ($method === 'getStruct') {
                     return $this->good($this->game->getStruct());
@@ -53,7 +54,7 @@ class Router {
                     if ($method === $command) {
                         unset($options->method);
                         if ($this->game->executeCommand($command, $options)) {
-                            $this->game->update();
+                            $this->game->update(1);
                             return $this->good($this->game->getStruct());
                         } else {
                             return $this->bad('fail to execute command ' . $method);

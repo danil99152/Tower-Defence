@@ -135,21 +135,27 @@ function Game(options) {
         $('.game-menu').show();
         $('#game').hide();
 
+        var method;
 
-        // Проверить, что игрок ВЫБРАЛ за кого собрался играть!!!
-        $('#gameStart').on('click', () => {
-            const result = server.getStruct();
-            if (result.result) {
-                render(result.data);
-            }
-            $('.game-menu').hide();
-            $('#game').show();
-            refresh();
+        $('.selectTeam').on('click', function() {
+            method = this.value;
         });
 
-        document.getElementById('gameStart').onclick = async function () {
-            refresh();
-        };
+        // Проверить, что игрок ВЫБРАЛ за кого собрался играть!!!
+        $('#gameStart').on('click', async () => {
+            if (method) {
+                await server.startGame(method);
+                const result = await server.getStruct();
+                if (result.result) {
+                    render(result.data);
+                }
+                $('.game-menu').hide();
+                $('#game').show();
+                refresh();
+            } else {
+                alert('Выбери сторону!');
+            }
+        });
     }
     init();
 }

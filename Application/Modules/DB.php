@@ -78,4 +78,20 @@ class DB {
         $user_id = $this->db->query($query)->fetchObject('stdClass');
         return $this->getMobByUserId($user_id);
     }
+    public  function addTower($user_id){
+        $query = 'INSERT INTO tower (user_id) VALUES ("'.$user_id.'") ';
+        return $this->db->query($query)->fetchObject('stdClass');
+    }
+    public  function  deleteTower($user_id){
+        $query = 'DELETE FROM tower WHERE  user_id = "'.$user_id.'" ';
+        return $this->db->query($query)->fetchObject('stdClass');
+    }
+    public function addMob ($user_id){
+        $query = 'INSERT INTO mob (user_id) VALUES ("'.$user_id.'") ';
+        return $this->db->query($query)->fetchObject('stdClass');
+    }
+    public  function  deleteMob($user_id){
+        $query = 'DELETE FROM mob WHERE  user_id = "'.$user_id.'" ';
+        return $this->db->query($query)->fetchObject('stdClass');
+    }
 }

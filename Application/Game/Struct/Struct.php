@@ -31,7 +31,7 @@ class Struct {
     public function addMob($options) {
         // выбрать новый идентификатор
         //...
-        $options->id = 55;
+        $options->id = $options->user_id;
         $options->life = self::MOB_LIFE ;
         $options->speed = self::MOB_SPEED;
         $this->mobs[] = new Mob($options);
@@ -40,7 +40,7 @@ class Struct {
     public function addTower($options) {
         // выбрать новый идентификатор
         //...
-        $options->id = 123;
+        $options->id = $options->user_id;
         $options->damage = self::TOWER_DAMAGE;
         $options->angle = self::TOWER_ANGLE;
         $this->towers[] = new Tower($options);
@@ -85,6 +85,12 @@ class Struct {
         foreach ($shots as $shot) {
             $shot->gamerId = $shot->user_id;
             $this->shots[] = new Shot($shot);
+        }
+    }
+    public function deleteTower($id){
+
+        foreach ($this->towers as $tower) {
+        //$tower
         }
     }
 }

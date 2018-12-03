@@ -22,7 +22,7 @@ function Server() {
         return $.get('api', { method: 'logout', token});
     };
 
-/*    this.gameStart = function(){
-        return $.get('api', { method: 'gameStart'  , token});
-    };*/
+    this.startGame = function(method){
+        return $.get('api', { method, token});
+    };
 }
