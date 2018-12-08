@@ -140,3 +140,10 @@ input {
 	font-size: 20pt;
 	color: green;
 }
+
+#offer p {
+	font-family: 'DS Kork';
+	font-size: 18pt;
+	color: #20B2AA;
+	text-align: left;
+}
