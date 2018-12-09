@@ -31,11 +31,22 @@ class Game {
     }
 
     private function addMob($userId) {
-        //...
-        $this->struct->setMobs($userId);
         $this->db->deleteMob($userId);
+        $this->struct->setMobs($userId);
         $this->struct->addMob($userId);
         $this->db->addMob($userId);
+        return true;
+    }
+
+    private function addShot($userId){
+        // удалить все старые выстрелы пользователя из БД (и из структуры)
+        $this->db->deleteShot($userId);
+        // создать новый выстрел
+        $this->struct->setShots($userId);
+        // добавить выстрел в структуру
+        $this->struct->addShot($userId);
+        // добавить выстрел в БД
+        $this->db->addShot($userId);
         return true;
     }
 
@@ -47,7 +58,8 @@ class Game {
         $COMMANDS = $this->input->getCommand();
         switch ($name) {
             case $COMMANDS->ADD_TOWER: return $this->addTower($options->userId);
-            case $COMMANDS->ADD_MOB  : return $this->addMob($options->userId);
+            case $COMMANDS->ADD_MOB  : return $this->addMob  ($options->userId);
+            case $COMMANDS->SHOTING  : return $this->addShot ($options->userId);
         }
         return $this->input->executeCommand($name, $options);
     }

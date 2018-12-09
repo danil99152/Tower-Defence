@@ -87,10 +87,28 @@ class Struct {
             $this->shots[] = new Shot($shot);
         }
     }
-    public function deleteTower($id){
 
-        foreach ($this->towers as $tower) {
-        //$tower
+    public function deleteTower($towers){
+        $this->towers = [];
+        foreach ($towers as $tower) {
+            $tower->gamerId = $tower->user_id;
+            unset($tower);
+        }
+    }
+
+    public function deleteMob($mobs){
+        $this->mobs = [];
+        foreach ($mobs as $mob) {
+            $mob->gamerId = $mob->user_id;
+            unset($mob);
+        }
+    }
+
+    public function deleteShot($shots){
+        $this->shots = [];
+        foreach ($shots as $shot) {
+            $shot->gamerId = $shot->user_id;
+            unset($shot);
         }
     }
 }

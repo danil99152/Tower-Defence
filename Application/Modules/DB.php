@@ -80,7 +80,7 @@ class DB {
     }
     public  function addTower($user_id){
         $query = 'INSERT INTO tower (user_id) VALUES ("'.$user_id.'") ';
-        return $this->db->query($query)->fetchObject('stdClass');
+        return $this->db->query($query)->fetchObject('stdClass'); //выдает ошибку
     }
     public  function  deleteTower($user_id){
         $query = 'DELETE FROM tower WHERE  user_id = "'.$user_id.'" ';
@@ -88,10 +88,18 @@ class DB {
     }
     public function addMob ($user_id){
         $query = 'INSERT INTO mob (user_id) VALUES ("'.$user_id.'") ';
-        return $this->db->query($query)->fetchObject('stdClass');
+        return $this->db->query($query)->fetchObject('stdClass'); //выдает ошибку
     }
     public  function  deleteMob($user_id){
         $query = 'DELETE FROM mob WHERE  user_id = "'.$user_id.'" ';
+        return $this->db->query($query)->fetchObject('stdClass');
+    }
+    public function addShot ($user_id){
+        $query = 'INSERT INTO shot (user_id) VALUES ("'.$user_id.'") ';
+        return $this->db->query($query)->fetchObject('stdClass');
+    }
+    public  function  deleteShot($user_id){
+        $query = 'DELETE FROM shot WHERE  user_id = "'.$user_id.'" ';
         return $this->db->query($query)->fetchObject('stdClass');
     }
 }
