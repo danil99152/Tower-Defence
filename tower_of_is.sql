@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 19 2018 г., 09:34
--- Версия сервера: 5.6.38
+-- Время создания: Дек 10 2018 г., 17:20
+-- Версия сервера: 5.7.20-log
 -- Версия PHP: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -49,19 +49,20 @@ INSERT INTO `map` (`id`, `size_x`, `size_y`) VALUES
 
 CREATE TABLE `mob` (
   `id` int(11) NOT NULL,
-  `user_id` varchar(45) NOT NULL,
-  `life` varchar(45) NOT NULL,
-  `x` varchar(45) DEFAULT NULL,
-  `y` varchar(45) DEFAULT NULL,
-  `speed` varchar(45) DEFAULT NULL
+  `user_id` varchar(45) NOT NULL DEFAULT '1',
+  `life` varchar(45) NOT NULL DEFAULT '1000',
+  `x` varchar(45) DEFAULT '1',
+  `y` varchar(45) DEFAULT '1',
+  `speed` varchar(45) DEFAULT '1',
+  `type` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `mob`
 --
 
-INSERT INTO `mob` (`id`, `user_id`, `life`, `x`, `y`, `speed`) VALUES
-(1, '1', '100', '1', '1', '0');
+INSERT INTO `mob` (`id`, `user_id`, `life`, `x`, `y`, `speed`, `type`) VALUES
+(4, '1', '1500', '1', '2', '5', NULL);
 
 -- --------------------------------------------------------
 
@@ -71,21 +72,22 @@ INSERT INTO `mob` (`id`, `user_id`, `life`, `x`, `y`, `speed`) VALUES
 
 CREATE TABLE `shot` (
   `id` int(11) NOT NULL,
-  `angle` varchar(45) NOT NULL,
-  `x` varchar(45) DEFAULT NULL,
-  `y` varchar(45) DEFAULT NULL,
-  `speed` varchar(45) NOT NULL,
-  `user_id` varchar(45) NOT NULL,
-  `tower_id` varchar(45) NOT NULL,
-  `status` varchar(45) DEFAULT NULL
+  `angle` varchar(45) NOT NULL DEFAULT '0.5',
+  `x` varchar(45) DEFAULT '1',
+  `y` varchar(45) DEFAULT '1',
+  `speed` varchar(45) NOT NULL DEFAULT '1',
+  `user_id` varchar(45) NOT NULL DEFAULT '1',
+  `tower_id` varchar(45) NOT NULL DEFAULT '1',
+  `status` varchar(45) DEFAULT NULL,
+  `type` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `shot`
 --
 
-INSERT INTO `shot` (`id`, `angle`, `x`, `y`, `speed`, `user_id`) VALUES
-(1, '0.5', '2', '2', '10000', '2');
+INSERT INTO `shot` (`id`, `angle`, `x`, `y`, `speed`, `user_id`, `tower_id`, `status`, `type`) VALUES
+(1, '0.5', '2', '2', '10000', '2', '1', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -95,12 +97,12 @@ INSERT INTO `shot` (`id`, `angle`, `x`, `y`, `speed`, `user_id`) VALUES
 
 CREATE TABLE `tile` (
   `id` int(11) NOT NULL,
-  `map_id` varchar(45) NOT NULL,
-  `x` int(11) NOT NULL,
-  `y` int(11) NOT NULL,
-  `passability` varchar(45) NOT NULL,
-  `sprite` varchar(45) NOT NULL,
-  `type` varchar(45) NOT NULL
+  `map_id` varchar(45) NOT NULL DEFAULT '1',
+  `x` int(11) NOT NULL DEFAULT '1',
+  `y` int(11) NOT NULL DEFAULT '1',
+  `passability` varchar(45) NOT NULL DEFAULT '1',
+  `sprite` varchar(45) NOT NULL DEFAULT '1',
+  `type` varchar(45) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -108,15 +110,15 @@ CREATE TABLE `tile` (
 --
 
 INSERT INTO `tile` (`id`, `map_id`, `x`, `y`, `passability`, `sprite`, `type`) VALUES
-(1, '1', 0, 0, '1', '', 'grass'),
-(2, '1', 0, 1, '1', '', 'grass'),
-(3, '1', 0, 2, '0', '', 'mount'),
-(4, '1', 1, 0, '1', '', 'grass'),
-(5, '1', 1, 1, '0', '', 'mount'),
-(6, '1', 1, 2, '0', '', 'mount'),
-(7, '1', 2, 0, '1', '', 'grass'),
-(8, '1', 2, 1, '0', '', 'mount'),
-(9, '1', 2, 2, '0', '', 'mount');
+(1, '1', 0, 0, '1', '1', 'grass'),
+(2, '1', 0, 1, '1', '1', 'grass'),
+(3, '1', 0, 2, '0', '1', 'road'),
+(4, '1', 1, 0, '1', '1', 'grass'),
+(5, '1', 1, 1, '0', '1', 'road'),
+(6, '1', 1, 2, '0', '1', 'road'),
+(7, '1', 2, 0, '1', '1', 'grass'),
+(8, '1', 2, 1, '0', '1', 'road'),
+(9, '1', 2, 2, '0', '1', 'road');
 
 -- --------------------------------------------------------
 
@@ -126,19 +128,21 @@ INSERT INTO `tile` (`id`, `map_id`, `x`, `y`, `passability`, `sprite`, `type`) V
 
 CREATE TABLE `tower` (
   `id` int(11) NOT NULL,
-  `user_id` varchar(45) NOT NULL,
-  `damage` varchar(45) NOT NULL,
-  `x` varchar(45) DEFAULT NULL,
-  `y` varchar(45) DEFAULT NULL,
-  `angle` varchar(45) NOT NULL
+  `user_id` varchar(45) NOT NULL DEFAULT '1',
+  `damage` varchar(45) NOT NULL DEFAULT '1',
+  `x` varchar(45) DEFAULT '1',
+  `y` varchar(45) DEFAULT '1',
+  `angle` varchar(45) NOT NULL DEFAULT '0.5',
+  `type` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `tower`
 --
 
-INSERT INTO `tower` (`id`, `user_id`, `damage`, `x`, `y`, `angle`) VALUES
-(1, '2', '100000', '2', '2', '0.5');
+INSERT INTO `tower` (`id`, `user_id`, `damage`, `x`, `y`, `angle`, `type`) VALUES
+(1, '2', '100000', '2', '2', '0.5', 1),
+(3, '1', '500', '3', '1', '0', 1);
 
 -- --------------------------------------------------------
 
@@ -159,7 +163,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `login`, `password`, `token`) VALUES
-(1, 'вася', 'vasya', '123', '8abd9cbd0eba96d21f77ca3a93fa9b17'),
+(1, 'вася', 'vasya', '123', '2ddd8a91933bc94884484352f32b945a'),
 (2, 'Петя', 'peya', '123', '');
 
 --
@@ -226,7 +230,7 @@ ALTER TABLE `map`
 -- AUTO_INCREMENT для таблицы `mob`
 --
 ALTER TABLE `mob`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `shot`
@@ -244,7 +248,7 @@ ALTER TABLE `tile`
 -- AUTO_INCREMENT для таблицы `tower`
 --
 ALTER TABLE `tower`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `user`

@@ -25,14 +25,14 @@ function Game(options) {
 
     const SIZE = 32;
     const SPRITES = {
-        mount: {
+        grass: {
             img: imgGrass,
             sprite: [
                 { x: 0, y: 0 },
                 { x: SIZE, y: 0 }
             ]
         },
-        grass: {
+        road: {
             img: imgRoad,
             sprite: [
                 { x: 0, y: 0 },
@@ -114,7 +114,6 @@ function Game(options) {
             }
         }
         //нарисовать мобов на карте
-
         data.mobs.forEach(mob => printMobSprite(mob));
         // нарисовать дороги(через passability)
         //data.roads.forEach(road => printRoadSprite(road));
