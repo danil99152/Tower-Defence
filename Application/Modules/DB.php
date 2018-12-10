@@ -78,28 +78,77 @@ class DB {
         $user_id = $this->db->query($query)->fetchObject('stdClass');
         return $this->getMobByUserId($user_id);
     }
-    public  function addTower($user_id){
-        $query = 'INSERT INTO tower (user_id) VALUES ("'.$user_id.'") ';
-        return $this->db->query($query)->fetchObject('stdClass'); //выдает ошибку
-    }
-    public  function  deleteTower($user_id){
-        $query = 'DELETE FROM tower WHERE  user_id = "'.$user_id.'" ';
+    /*
+    public function getShotByUserId($user_id) {
+        $query = 'SELECT * FROM shot WHERE user_id="' . $user_id . '"';
         return $this->db->query($query)->fetchObject('stdClass');
     }
-    public function addMob ($user_id){
-        $query = 'INSERT INTO mob (user_id) VALUES ("'.$user_id.'") ';
-        return $this->db->query($query)->fetchObject('stdClass'); //выдает ошибку
+
+    public function getShotByToken($token){
+        $query = 'SELECT id FROM user WHERE token="' . $token . '"';
+        $user_id = $this->db->query($query)->fetchObject('stdClass');
+        return $this->getShotByUserId($user_id);
+    }*/
+
+    public function addTower($options){
+        $query = 'INSERT INTO tower (user_id, damage, x, y, angle) VALUES (
+        "'.$options->user_id.'",
+        "'.$options->damage.'",
+        "'.$options->x.'",
+        "'.$options->y.'",
+        "'.$options->angle.'"
+    ) ';
+        return $this->db->query($query);
     }
-    public  function  deleteMob($user_id){
-        $query = 'DELETE FROM mob WHERE  user_id = "'.$user_id.'" ';
+
+    public function  deleteTower($user_id){
+        $query = 'DELETE FROM tower WHERE  user_id= "'.$user_id.'" ';
+        return $this->db->query($query);
+    }
+
+    public function addMob ($options){
+        $query = 'INSERT INTO mob (user_id, life, x, y, speed) VALUES (
+        "'.$options->user_id.'",
+        "'.$options->life.'",
+        "'.$options->x.'",
+        "'.$options->y.'",
+        "'.$options->speed.'"
+    ) ';
+        return $this->db->query($query);
+    }
+
+    public function  deleteMob($user_id){
+        $query = 'DELETE FROM mob WHERE  user_id= "'.$user_id.'" ';
+        return $this->db->query($query);
+    }
+
+    public function addShot ($options){
+        $query = 'INSERT INTO shot (angle, x, y, speed, user_id, tower_id, status) VALUES (
+        "'.$options->angle.'"
+        "'.$options->x.'",
+        "'.$options->y.'",
+        "'.$options->speed.'",
+        "'.$options->user_id.'",
+        "'.$options->tower_id.'",
+        "'.$options->status.'",
+    ) ';
+        return $this->db->query($query);
+    }
+
+    public function  deleteShot($user_id){
+        $query = 'DELETE FROM shot WHERE  user_id= "'.$user_id.'" ';
         return $this->db->query($query)->fetchObject('stdClass');
     }
-    public function addShot ($user_id){
-        $query = 'INSERT INTO shot (user_id) VALUES ("'.$user_id.'") ';
-        return $this->db->query($query)->fetchObject('stdClass');
+
+    public function updateTowers($mapId, $towers){
+        return true;
     }
-    public  function  deleteShot($user_id){
-        $query = 'DELETE FROM shot WHERE  user_id = "'.$user_id.'" ';
-        return $this->db->query($query)->fetchObject('stdClass');
+
+    public function updateMobs($mapId, $mobs){
+        return true;
+    }
+
+    public function updateShots($mapId, $shots){
+        return true;
     }
 }
