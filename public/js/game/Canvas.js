@@ -3,16 +3,9 @@ function Canvas() {
     let context;
 
     this.clear = function() {
-        context.fillStyle = 'black';
+        context.fillStyle = 'white';
         context.fillRect(0, 0, canvas.width, canvas.height);
     };
-
-    function init() {
-        canvas = document.getElementById('game-field');
-        canvas.width  = 400;
-        canvas.height = 400;
-        context = canvas.getContext('2d');
-    }
 
     this.line = function (x1, y1, x2, y2, color) {
         context.beginPath();
@@ -24,13 +17,13 @@ function Canvas() {
 
     this.circle = function (x, y, r, color) {
         context.beginPath();
-        context.strokeStyle = color || "black";
+        context.strokeStyle = color || "yellow";
         context.arc(x, y, r, 0, 2 * Math.PI);
         context.stroke();
     };
 
     this.text = function (text, x, y, color, size) {
-        context.fillStyle = color || "black";
+        context.fillStyle = color || "green";
         context.font = (size || 50) + "px Georgia";
         context.fillText(text, x, y);
     };
@@ -43,5 +36,11 @@ function Canvas() {
         context.save();
     };
 
+    function init() {
+        canvas = document.getElementById('game-field');
+        canvas.width  = 400;
+        canvas.height = 400;
+        context = canvas.getContext('2d');
+    }
     init();
 }

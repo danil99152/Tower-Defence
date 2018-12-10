@@ -3,7 +3,9 @@ function Game(options) {
     const server = options.server;
     const callbacks = options.callbacks || {};
 
-    const canvas = new Canvas();
+    const canvas = new Canvas(canvasKeyPress);
+
+    let interval = null;
 
     // картинка с травой
     const imgGrass = new Image();
@@ -19,18 +21,18 @@ function Game(options) {
 
     // спрайты дорог на карте
     const imgRoad = new Image();
-    imgRoad.src = "public/img/sprites/roads_32x32.png"
+    imgRoad.src = "public/img/sprites/roads_32x32.png";
 
     const SIZE = 32;
     const SPRITES = {
-        grass: {
+        mount: {
             img: imgGrass,
             sprite: [
                 { x: 0, y: 0 },
                 { x: SIZE, y: 0 }
             ]
         },
-        road: {
+        grass: {
             img: imgRoad,
             sprite: [
                 { x: 0, y: 0 },
@@ -58,8 +60,14 @@ function Game(options) {
         }
     };
 
+    function canvasKeyPress() {
+        //console.log(123);
+        //...
+    }
+
     function printSprite(tile, x, y) {
         if (tile && tile.type && tile.sprite) {
+            //console.log(tile.type,SPRITES[tile.type]);
             const sprite = SPRITES[tile.type];
             canvas.sprite(sprite.img,
                 sprite.sprite[tile.sprite - 0].x, sprite.sprite[tile.sprite - 0].y, SIZE, SIZE,
@@ -77,6 +85,9 @@ function Game(options) {
     }
 
     function printMobSprite(mob) {
+
+        console.log(mob);
+
         if (mob && mob.type) {
             const sprite = SPRITES.mob;
             canvas.sprite(sprite.img,
@@ -103,6 +114,7 @@ function Game(options) {
             }
         }
         //нарисовать мобов на карте
+
         data.mobs.forEach(mob => printMobSprite(mob));
         // нарисовать дороги(через passability)
         //data.roads.forEach(road => printRoadSprite(road));
@@ -118,17 +130,16 @@ function Game(options) {
         }
     }
 
-    this.init = () => {
-        refresh();
-        this.deinit();
-        interval = setInterval(refresh, 1000);
-    };
-
-    this.deinit = () => {
+    function stopGame() {
         if (interval) {
             clearInterval(interval);
         }
-    };
+    }
+
+    function startGame() {
+        stopGame();
+        interval = setInterval(refresh, 1000);
+    }
 
     function init() {
 
@@ -151,9 +162,17 @@ function Game(options) {
                 }
                 $('.game-menu').hide();
                 $('#game').show();
-                refresh();
+                startGame();
             } else {
                 alert('Выбери сторону!');
+            }
+        });
+
+        $(document).on('keydown', event => {
+            console.log(event.keyCode);
+
+            switch (event.keyCode) {
+                case 38: console.log('повернуть моба вверх'); break;
             }
         });
     }
