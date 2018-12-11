@@ -6,6 +6,14 @@ function Server() {
         return $.get('api', { method: 'rotateTower', angle, token });
     };
 
+    this.moveMob = function () {
+        return $.get('api', { method: 'moveMob', token });
+    };
+
+    this.shoting = function () {
+        return $.get('api', { method: 'shoting', token });
+    };
+
     this.getStruct = function () {
         return $.get('api', { method: 'getStruct', token });
     };

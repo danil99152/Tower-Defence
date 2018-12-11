@@ -24,38 +24,43 @@ function Game(options) {
     imgRoad.src = "public/img/sprites/roads_32x32.png";
 
     const SIZE = 32;
+    const stdSprite = [ //Стандартная картинка со спрайтом 160*64
+        { x: 0, y: 0 },
+        { x: SIZE, y: 0 },
+        { x: SIZE*2, y: 0 },
+        { x: SIZE*3, y: 0 },
+        { x: SIZE*4, y: 0 },
+        { x: 0, y: SIZE },
+        { x: SIZE, y: SIZE },
+        { x: SIZE*2, y: SIZE },
+        { x: SIZE*3, y: SIZE },
+        { x: SIZE*4, y: SIZE }
+    ];
     const SPRITES = {
         grass: {
             img: imgGrass,
-            sprite: [
-                { x: 0, y: 0 },
-                { x: SIZE, y: 0 }
-            ]
+            sprite: stdSprite
         },
         road: {
             img: imgRoad,
-            sprite: [
-                { x: 0, y: 0 },
-                { x: SIZE, y: 0 },
-                { x: SIZE, y: SIZE }
-            ]
+            sprite: stdSprite
         },
         tower: {
             img: imgTower,
             sprite: [
                 { x: 0, y: 0 },
+                { x: 80, y: 0},
                 { x: 160, y: 0},
-                { x: 320, y: 0},
-                { x: 480, y: 0}
+                { x: 240, y: 0}
             ]
         },
         mob: {
             img: imgMob,
             sprite: [
                 { x: 0, y: 0 },
+                { x: 80, y: 0},
                 { x: 160, y: 0},
-                { x: 320, y: 0},
-                { x: 480, y: 0}
+                { x: 240, y: 0}
             ]
         }
     };
