@@ -23,8 +23,8 @@ function Game(options) {
     const imgRoad = new Image();
     imgRoad.src = "public/img/sprites/roads_32x32.png";
 
-    const SIZE = 32;
-    const stdSprite = [ //Стандартная картинка со спрайтом 160*64
+    const SIZE = 134;
+    const stdSprite = [
         { x: 0, y: 0 },
         { x: SIZE, y: 0 },
         { x: SIZE*2, y: 0 },
@@ -49,9 +49,9 @@ function Game(options) {
             img: imgTower,
             sprite: [
                 { x: 0, y: 0 },
-                { x: 80, y: 0},
                 { x: 160, y: 0},
-                { x: 240, y: 0}
+                { x: 320, y: 0},
+                { x: 480, y: 0}
             ]
         },
         mob: {
