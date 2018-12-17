@@ -107,13 +107,14 @@ class DB {
     }
 
     public function addMob ($options){
-        $query = 'INSERT INTO mob (user_id, life, x, y, speed) VALUES (
+        $query = 'INSERT INTO mob (user_id, life, x, y, speed, type) VALUES (
         "'.$options->user_id.'",
         "'.$options->life.'",
         "'.$options->x.'",
         "'.$options->y.'",
-        "'.$options->speed.'"
-    ) ';
+        "'.$options->speed.'",
+        "'.$options->type.'"
+    )';
         return $this->db->query($query);
     }
 
@@ -144,7 +145,7 @@ class DB {
         return true;
     }
 
-    public function updateMobs($mapId, $mobs){
+    public function updateMobs($user_id){
         return true;
     }
 

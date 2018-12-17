@@ -21,6 +21,7 @@ class Logic {
     }
 
 
+
     private function getMob($id){
         if ($id){
             $mobs = $this->struct->mobs;
@@ -93,8 +94,10 @@ class Logic {
     // подвинуть моба на 1 клетку
     public function moveMob($options)
     {
-
+        //мобы двигаться
     }
+
+
 
     // добавить башню
     public function addTower($gamerId) {

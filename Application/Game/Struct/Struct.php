@@ -33,9 +33,10 @@ class Struct {
         $options = new StdClass();
         $options->user_id = $userId;
         $options->life = self::MOB_LIFE ;
-        $options->x = rand(1, 3);
-        $options->y = rand(1, 3);
+        $options->x = 0; //rand(1, 3);
+        $options->y = 0; //rand(1, 3);
         $options->speed = self::MOB_SPEED;
+        $options->type = 0;
         return $options;
     }
 

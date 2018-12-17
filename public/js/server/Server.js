@@ -4,14 +4,16 @@ function Server() {
 
     this.rotateTower = function (angle) {
         return $.get('api', { method: 'rotateTower', angle, token });
+        //transform - поворот за движением мыши
     };
 
     this.moveMob = function () {
-        return $.get('api', { method: 'moveMob', token });
+        return $.get('api', { method: 'moveMob', x, y, token });
     };
 
     this.shoting = function () {
         return $.get('api', { method: 'shoting', token });
+        //Линия пересекает ли моба(круг)
     };
 
     this.getStruct = function () {

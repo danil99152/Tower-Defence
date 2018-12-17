@@ -72,11 +72,12 @@ function Game(options) {
 
     function printSprite(tile, x, y) {
         if (tile && tile.type && tile.sprite) {
-            //console.log(tile.type,SPRITES[tile.type]);
             const sprite = SPRITES[tile.type];
-            canvas.sprite(sprite.img,
-                sprite.sprite[tile.sprite - 0].x, sprite.sprite[tile.sprite - 0].y, SIZE, SIZE,
-                x * SIZE, y * SIZE, SIZE, SIZE);
+            canvas.sprite(
+                sprite.img,
+                sprite.sprite[tile.sprite - 0].x, sprite.sprite[tile.sprite - 0].y, 32, 32,
+                x * SIZE, y * SIZE, SIZE, SIZE
+            );
         }
     }
 
@@ -85,19 +86,16 @@ function Game(options) {
             const sprite = SPRITES.tower;
             canvas.sprite(sprite.img,
                 sprite.sprite[tower.type - 0].x, sprite.sprite[tower.type - 0].y, 160, 160,
-                tower.x * SIZE - 64, tower.y * SIZE - 128, 160, 160);
+                tower.x * SIZE, tower.y * SIZE, SIZE, SIZE);
         }
     }
 
     function printMobSprite(mob) {
-
-        console.log(mob);
-
         if (mob && mob.type) {
             const sprite = SPRITES.mob;
             canvas.sprite(sprite.img,
-                sprite.sprite[mob.type - 0].x, sprite.sprite[mob.type - 0].y, 45, 60,
-                mob.x * SIZE, mob.y * SIZE - (60 - SIZE), 45, 60);
+                sprite.sprite[mob.type - 0].x, sprite.sprite[mob.type - 0].y, 50, 90,
+                mob.x * SIZE, mob.y * SIZE, SIZE, SIZE);
         }
     }
 
@@ -175,9 +173,15 @@ function Game(options) {
         $(document).on('keydown', event => {
             console.log(event.keyCode);
 
+
             switch (event.keyCode) {
-                case 38: console.log('повернуть моба вверх'); break;
+                case 37:  break;
+                case 38:  break;
+                case 39:  break;
+                case 40:  break;
             }
+
+            server.moveMob();
         });
     }
     init();
