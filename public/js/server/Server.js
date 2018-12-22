@@ -8,7 +8,7 @@ function Server() {
     };
 
     this.moveMob = function () {
-        return $.get('api', { method: 'moveMob', x, y, token });
+        return $.get('api', { method: 'moveMob', token });
     };
 
     this.shoting = function () {

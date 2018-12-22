@@ -23,7 +23,7 @@ function Game(options) {
     const imgRoad = new Image();
     imgRoad.src = "public/img/sprites/roads_32x32.png";
 
-    const SIZE = 134;
+    const SIZE = 32;
     const stdSprite = [
         { x: 0, y: 0 },
         { x: SIZE, y: 0 },
@@ -64,11 +64,6 @@ function Game(options) {
             ]
         }
     };
-
-    function canvasKeyPress() {
-        //console.log(123);
-        //...
-    }
 
     function printSprite(tile, x, y) {
         if (tile && tile.type && tile.sprite) {
@@ -143,6 +138,12 @@ function Game(options) {
         interval = setInterval(refresh, 1000);
     }
 
+
+    function canvasKeyPress() {
+        //console.log(123);
+        //...
+    }
+
     function init() {
 
         $('.game-menu').show();
@@ -181,7 +182,7 @@ function Game(options) {
                 case 40:  break;
             }
 
-            server.moveMob();
+            //server.moveMob();
         });
     }
     init();
