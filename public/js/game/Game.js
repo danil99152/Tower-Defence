@@ -165,24 +165,22 @@ function Game(options) {
                 }
                 $('.game-menu').hide();
                 $('#game').show();
+                $(document).on('keydown', event => {
+                    console.log(event.keyCode);
+
+                    switch (event.keyCode) {
+                        case 37:  break;
+                        case 38:  break;
+                        case 39:  break;
+                        case 40:  break;
+                    }
+
+                    //server.moveMob();
+                });
                 startGame();
             } else {
                 alert('Выбери сторону!');
             }
-        });
-
-        $(document).on('keydown', event => {
-            console.log(event.keyCode);
-
-
-            switch (event.keyCode) {
-                case 37:  break;
-                case 38:  break;
-                case 39:  break;
-                case 40:  break;
-            }
-
-            //server.moveMob();
         });
     }
     init();

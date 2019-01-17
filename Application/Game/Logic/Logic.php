@@ -20,8 +20,6 @@ class Logic {
         return null;
     }
 
-
-
     private function getMob($id){
         if ($id){
             $mobs = $this->struct->mobs;
