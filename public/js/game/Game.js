@@ -140,8 +140,18 @@ function Game(options) {
 
 
     function canvasKeyPress() {
-        //console.log(123);
-        //...
+        $(document).on('keydown', event => {
+            //console.log(event.keyCode);
+
+            switch (event.keyCode) {
+                case 37:  break;//влево
+                case 38:  break;//вверх
+                case 39:  break;//вправо
+                case 40:  break;//вниз
+            }
+
+            //server.moveMob();
+        });
     }
 
     function init() {
@@ -165,18 +175,7 @@ function Game(options) {
                 }
                 $('.game-menu').hide();
                 $('#game').show();
-                $(document).on('keydown', event => {
-                    console.log(event.keyCode);
-
-                    switch (event.keyCode) {
-                        case 37:  break;
-                        case 38:  break;
-                        case 39:  break;
-                        case 40:  break;
-                    }
-
-                    //server.moveMob();
-                });
+                canvasKeyPress();
                 startGame();
             } else {
                 alert('Выбери сторону!');
