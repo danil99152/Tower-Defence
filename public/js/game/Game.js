@@ -9,7 +9,7 @@ function Game(options) {
 
     // картинка с травой
     const imgGrass = new Image();
-    imgGrass.src = "public/img/sprites/grass_32x32.png";
+    imgGrass.src = "public/img/sprites/grass.png";
 
     // спрайты башен на карте
     const imgTower = new Image();
@@ -23,7 +23,7 @@ function Game(options) {
     const imgRoad = new Image();
     imgRoad.src = "public/img/sprites/road.png";
 
-    const SIZE = 64;
+    const SIZE = 95;
     const stdSprite = [
         { x: 0, y: 0 },
         { x: SIZE, y: 0 },
@@ -70,7 +70,7 @@ function Game(options) {
             const sprite = SPRITES[tile.type];
             canvas.sprite(
                 sprite.img,
-                sprite.sprite[tile.sprite - 0].x, sprite.sprite[tile.sprite - 0].y, SIZE, SIZE,
+                sprite.sprite[tile.sprite].x, sprite.sprite[tile.sprite].y, SIZE, SIZE,
                 x * SIZE, y * SIZE, SIZE, SIZE
             );
         }
@@ -98,7 +98,7 @@ function Game(options) {
         if(road && road.type) {
             const sprite = SPRITES.road;
             canvas.sprite(sprite.img,
-                sprite.sprite[road.type - 0].x, sprite.sprite[road.type - 0].y, 32, 32,
+                sprite.sprite[road.type - 0].x, sprite.sprite[road.type - 0].y, SIZE, SIZE,
                 road.x * SIZE, road.y * SIZE, 32, 32);
         }
     }
