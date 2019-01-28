@@ -38,8 +38,8 @@ function Canvas() {
 
     function init() {
         canvas = document.getElementById('game-field');
-        canvas.width  = 400;
-        canvas.height = 400;
+        canvas.width  = window.innerHeight-100;
+        canvas.height = window.innerHeight-100;
         context = canvas.getContext('2d');
     }
     init();

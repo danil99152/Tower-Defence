@@ -21,9 +21,9 @@ function Game(options) {
 
     // спрайты дорог на карте
     const imgRoad = new Image();
-    imgRoad.src = "public/img/sprites/roads_32x32.png";
+    imgRoad.src = "public/img/sprites/road.png";
 
-    const SIZE = 32;
+    const SIZE = 64;
     const stdSprite = [
         { x: 0, y: 0 },
         { x: SIZE, y: 0 },
@@ -70,7 +70,7 @@ function Game(options) {
             const sprite = SPRITES[tile.type];
             canvas.sprite(
                 sprite.img,
-                sprite.sprite[tile.sprite - 0].x, sprite.sprite[tile.sprite - 0].y, 32, 32,
+                sprite.sprite[tile.sprite - 0].x, sprite.sprite[tile.sprite - 0].y, SIZE, SIZE,
                 x * SIZE, y * SIZE, SIZE, SIZE
             );
         }
@@ -175,7 +175,6 @@ function Game(options) {
                 }
                 $('.game-menu').hide();
                 $('#game').show();
-                canvasKeyPress();
                 startGame();
             } else {
                 alert('Выбери сторону!');
