@@ -33,6 +33,21 @@ class Logic {
         }
         return null;
     }
+
+    private function getShot($id){
+        if ($id){
+            $shots = $this->struct->shots;
+            foreach ($shots as $shot){
+                if ($shot->id === $id){
+                    return $shot;
+                }
+
+            }
+
+        }
+        return null;
+    }
+
     // добавить нового моба
     public function addMob($gamerId) {
         $map = $this->struct->map;
@@ -87,6 +102,9 @@ class Logic {
         return false;
     }
     // дойти мобом до точки выхода
+    public function finishMob($gamerId){
+
+    }
 
 
     // подвинуть моба на 1 клетку
@@ -162,15 +180,14 @@ class Logic {
     }
 
     // лететь выстрелом
-  /*  public function shoot($id){
-        $mob = $this->getMob($id);
+    public function shoot($id){
+        /*$mob = $this->getMob($id);
         if ($mob){
             $this->damage($id)->$mob($id);
             return true;
         }
-        return false;
+        return false; */
     }
-  */
 
     // повернуть башню на угол
     public function rotateTower($options) {
@@ -184,7 +201,37 @@ class Logic {
         return false;
     }
 
+    public function delShot($id){
+        $shot = $this->getShot($id);
+        if ($shot) {
+            foreach ($this->struct->shots as $key => $shot) {
+                if ($shot->id === $id) {
+                    unset($this->struct->shots[$key]);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     // попасть выстрелом
+    public function hit($options)
+    {
+        if ($options) {
+            $mob = $this->getMob($options->id);
+            $shot= $this->getShot($options->id);
+            if ($mob->x == $shot->x && $mob->y == $shot->y){
+                $this->delShot($options->id);
+                $this->killMob($options->id);
+                return true;
+            }
+            else {
+                $this->shoot($options->id);
+                return true;
+            }
+        }
+    }
+
     // нанести какой-нибудь урон
     public function damage($options){
         if ($options){
