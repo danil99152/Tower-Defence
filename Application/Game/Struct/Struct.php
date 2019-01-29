@@ -18,8 +18,7 @@ class Struct {
     public $shots;  // список летящих выстрелов
     public $map;    // карта
 
-    public function __construct() {
-        /*
+    public function __construct($db) {
         // задать карту
         $this->map = $db->getMap(1);
         // задать башни
@@ -28,7 +27,6 @@ class Struct {
         $this->mobs = $db->getMobs();
         //задать летящие выстрелы
         $this->shots = $db->getShots();
-        */
     }
 
     public function addMob($userId) {
@@ -36,7 +34,7 @@ class Struct {
         $options->user_id = $userId;
         $options->life = self::MOB_LIFE ;
         $options->x = 0; //rand(1, 3);
-        $options->y = 2; //rand(1, 3);
+        $options->y = 0; //rand(1, 3);
         $options->speed = self::MOB_SPEED;
         $options->type = 0;
         return $options;
@@ -46,8 +44,8 @@ class Struct {
         $options = new StdClass();
         $options->user_id = $userId;
         $options->damage = self::TOWER_DAMAGE;
-        $options->x = rand(0, 5);
-        $options->y = rand(0, 5);
+        $options->x = rand(1, 3);
+        $options->y = rand(1, 3);
         $options->angle = self::TOWER_ANGLE;
         return $options;
     }
@@ -55,8 +53,8 @@ class Struct {
     public function addShot($userId, $towerId) {
         $options = new StdClass();
         $options->angle = self::TOWER_ANGLE;
-        $options->x = rand(0, 5);
-        $options->y = rand(0, 5);
+        $options->x = rand(1, 3);
+        $options->y = rand(1, 3);
         $options->speed = rand(100, 200);
         $options->user_id = $userId;
         $options->user_id = $towerId;
