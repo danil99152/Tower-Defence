@@ -154,7 +154,7 @@ class DB {
     }
 // вот тут изменения(ниже)
 	  public function  deleteElderStep($user_id){
-        $query = 'DELETE FROM mob WHERE x AND y WHERE user_id = '.$user_id.''
+        $query = 'DELETE FROM mob WHERE x AND y WHERE user_id = '.$user_id.'';
         return $this->db->query($query)->fetchObject('stdClass');
     }
 
