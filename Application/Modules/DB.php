@@ -152,4 +152,17 @@ class DB {
     public function updateShots($mapId, $shots){
         return true;
     }
+// вот тут изменения(ниже)
+	  public function  deleteElderStep($user_id){
+        $query = 'DELETE FROM mob WHERE x AND y WHERE user_id = '.$user_id.''
+        return $this->db->query($query)->fetchObject('stdClass');
+    }
+
+    public function  moveMob($options){
+        $query = 'INSERT INTO mob(x,y) VALUES {
+        "'.$options->x.'",
+        "'.$options->y.'",
+          } ';
+        return $this->db->query($query);
+    }
 }
