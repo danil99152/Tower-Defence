@@ -13,7 +13,7 @@ class Game {
 
     public function __construct($db) {
         $this->db = $db;
-        $this->struct = new Struct();
+        $this->struct = new Struct($this->db);
         $this->logic  = new Logic($this->struct);
         $this->input  = new Input($this->logic);
     }

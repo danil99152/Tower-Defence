@@ -18,7 +18,7 @@ class Struct {
     public $shots;  // список летящих выстрелов
     public $map;    // карта
 
-    public function __construct() {
+    public function __construct($db) {
         // задать карту
         $this->map = $db->getMap(1);
         // задать башни
