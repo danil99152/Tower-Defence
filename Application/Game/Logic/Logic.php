@@ -100,7 +100,7 @@ class Logic {
     }
 
     // добавить башню
-    public function addTower($gamerId, $id) {
+    public function addTower($gamerId) {
         $map = $this->struct->map;
         $towers = $this->struct->towers;
         // проверить, что место для башни ещё имеется
@@ -125,14 +125,11 @@ class Logic {
                         }
                     }
                     if ($canAdd) {
-                        $this->struct->setTowers(
+                        $this->struct->addTower(
                             (object) array(
-                                'damage' => 500,
-                                'angle' => 0,
                                 'gamerId' => $gamerId,
                                 'x' => $x,
-                                'y' => $y,
-                                'id' => $id)
+                                'y' => $y)
                         );
                         return true;
                     }

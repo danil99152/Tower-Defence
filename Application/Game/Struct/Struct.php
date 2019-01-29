@@ -22,6 +22,19 @@ class Struct {
         
     }
 
+    public function addMob($userId) {
+    }
+
+    public function addTower($options) {
+        //$options->id = ?;
+        $options->damage = self::TOWER_DAMAGE;
+        $options->angle = self::TOWER_ANGLE;
+        $this->towers[] = new Tower($options);
+    }
+
+    public function addShot($userId, $towerId) {
+    }
+
     public function setMap($map, $sizeX, $sizeY) {
         $this->map = [];
         if ($map) {
