@@ -20,29 +20,27 @@ class Game {
 
     private function addTower($userId) {
         // удалить все старые башни пользователя из БД (и из структуры)
+        $tower = $this->db->getTowerByUserId($userId);
+        $this->logic->delTower($tower->id);
         $this->db->deleteTower($userId);
-        $this->struct->deleteTower($this->db->getTowerByUserId($userId));
         // создать новую башню
-        $options = new StdClass();
-        $options = $this->struct->addTower($userId);
-        // добавить башню в структуру
-        $this->struct->setTowers($options);
+        $this->logic->addTower($userId);//внутри добавить башню в структуру
         // добавить башню в БД
-        $this->db->addTower($options);
+        $this->db->addTower($this->struct->towers);
         return true;
     }
 
-    private function addMob($userId) {
+    private function addMob($userId) {/*
         $this->db->deleteMob($userId);
         $this->struct->deleteMob($this->db->getMobByUserId($userId));
         $options = new StdClass();
         $options = $this->struct->addMob($userId);
         $this->struct->setMobs($options);
         $this->db->addMob($options);
-        return true;
+        return true;*/
     }
 
-    private function addShot($userId){
+    private function addShot($userId){/*
         // удалить все старые выстрелы пользователя из БД (и из структуры)
         $this->db->deleteShot($userId);
         $this->struct->deleteShot($this->db->getShotByUserId($userId));
@@ -53,7 +51,7 @@ class Game {
         $this->struct->setShots($options);        
         // добавить выстрел в БД
         $this->db->setShot($options);
-        return true;
+        return true;*/
     }
 
     public function getCommand() {

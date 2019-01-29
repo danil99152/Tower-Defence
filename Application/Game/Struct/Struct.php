@@ -19,49 +19,7 @@ class Struct {
     public $map;    // карта
 
     public function __construct() {
-        /*
-        // задать карту
-        $this->map = $db->getMap(1);
-        // задать башни
-        $this->towers = $db->getTowers();
-        //задать мобов
-        $this->mobs = $db->getMobs();
-        //задать летящие выстрелы
-        $this->shots = $db->getShots();
-        */
-    }
-
-    public function addMob($userId) {
-        $options = new StdClass();
-        $options->user_id = $userId;
-        $options->life = self::MOB_LIFE ;
-        $options->x = 0; //rand(1, 3);
-        $options->y = 2; //rand(1, 3);
-        $options->speed = self::MOB_SPEED;
-        $options->type = 0;
-        return $options;
-    }
-
-    public function addTower($userId) {
-        $options = new StdClass();
-        $options->user_id = $userId;
-        $options->damage = self::TOWER_DAMAGE;
-        $options->x = rand(0, 5);
-        $options->y = rand(0, 5);
-        $options->angle = self::TOWER_ANGLE;
-        return $options;
-    }
-
-    public function addShot($userId, $towerId) {
-        $options = new StdClass();
-        $options->angle = self::TOWER_ANGLE;
-        $options->x = rand(0, 5);
-        $options->y = rand(0, 5);
-        $options->speed = rand(100, 200);
-        $options->user_id = $userId;
-        $options->user_id = $towerId;
-        //$options->status = ?;
-        return $options;
+        
     }
 
     public function setMap($map, $sizeX, $sizeY) {
@@ -99,30 +57,6 @@ class Struct {
         foreach ($shots as $shot) {
             $shot->gamerId = $shot->user_id;
             $this->shots[] = new Shot($shot);
-        }
-    }
-
-    public function deleteTower($towers){
-        $this->towers = [];
-        foreach ($towers as $tower) {
-            $tower->gamerId = $tower->user_id;
-            unset($tower);
-        }
-    }
-
-    public function deleteMob($mobs){
-        $this->mobs = [];
-        foreach ($mobs as $mob) {
-            $mob->gamerId = $mob->user_id;
-            unset($mob);
-        }
-    }
-
-    public function deleteShot($shots){
-        $this->shots = [];
-        foreach ($shots as $shot) {
-            $shot->gamerId = $shot->user_id;
-            unset($shot);
         }
     }
 }

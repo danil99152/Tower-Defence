@@ -8,38 +8,12 @@ class Logic {
         $this->struct = $struct;
     }
 
-    private function getTower($id) {
-        if ($id) {
-            $towers = $this->struct->towers;
-            foreach ($towers as $tower) {
-                if ($tower->id === $id - 0) {
-                    return $tower;
-                }
-            }
-        }
-        return null;
-    }
-
     private function getMob($id){
         if ($id){
             $mobs = $this->struct->mobs;
             foreach ($mobs as $mob){
                 if ($mob->id === $id){
                     return $mob;
-                }
-
-            }
-
-        }
-        return null;
-    }
-
-    private function getShot($id){
-        if ($id){
-            $shots = $this->struct->shots;
-            foreach ($shots as $shot){
-                if ($shot->id === $id){
-                    return $shot;
                 }
 
             }
@@ -113,10 +87,20 @@ class Logic {
         //мобы двигаться
     }
 
-
+    private function getTower($id) {
+        if ($id) {
+            $towers = $this->struct->towers;
+            foreach ($towers as $tower) {
+                if ($tower->id === $id) {
+                    return $tower;
+                }
+            }
+        }
+        return null;
+    }
 
     // добавить башню
-    public function addTower($gamerId) {
+    public function addTower($gamerId, $id) {
         $map = $this->struct->map;
         $towers = $this->struct->towers;
         // проверить, что место для башни ещё имеется
@@ -141,15 +125,29 @@ class Logic {
                         }
                     }
                     if ($canAdd) {
-                        $this->struct->addTower(
+                        $this->struct->setTowers(
                             (object) array(
+                                'damage' => 500,
+                                'angle' => 0,
                                 'gamerId' => $gamerId,
                                 'x' => $x,
-                                'y' => $y)
+                                'y' => $y,
+                                'id' => $id)
                         );
                         return true;
                     }
                 }
+            }
+        }
+        return false;
+    }
+
+    public function rotateTower($options) {
+        if ($options) {
+            $tower = $this->getTower($options->id);
+            if ($tower) {
+                $tower->angle = $options->angle;
+                return true;
             }
         }
         return false;
@@ -167,6 +165,20 @@ class Logic {
             }
         }
         return false;
+    }
+
+    private function getShot($id){
+        if ($id){
+            $shots = $this->struct->shots;
+            foreach ($shots as $shot){
+                if ($shot->id === $id){
+                    return $shot;
+                }
+
+            }
+
+        }
+        return null;
     }
 
     // выстрелить башней
@@ -190,16 +202,6 @@ class Logic {
     }
 
     // повернуть башню на угол
-    public function rotateTower($options) {
-        if ($options) {
-            $tower = $this->getTower($options->id);
-            if ($tower) {
-                $tower->angle = $options->angle;
-                return true;
-            }
-        }
-        return false;
-    }
 
     public function delShot($id){
         $shot = $this->getShot($id);
