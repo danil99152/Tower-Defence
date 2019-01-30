@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
@@ -175,9 +175,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `login`, `password`, `token`) VALUES
-(1, 'вася', 'vasya', '123', '3305e968abbcba4fb29a9bcdc13f9e39'),
-(2, 'Петя', 'petya', '123', 'cd73cdcbf9970c8ce0708709f07465ec'),
-(3, 'Нул', ' ', ' ', '77e6c01593571bf1906677f53a474850');
+(1, 'вася', 'vasya', '123', NULL
+(2, 'Петя', 'petya', '123', NULL
+(3, 'Нул', ' ', ' ', NULL
 
 --
 -- Индексы сохранённых таблиц
