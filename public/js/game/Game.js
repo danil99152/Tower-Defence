@@ -169,17 +169,30 @@ function Game(options) {
 
 
     function canvasKeyPress() {
-        $(document).on('keydown', event => {
+        $(document).on('keydown', async event => {
             //console.log(event.keyCode);
-
             switch (event.keyCode) {
-                case 37:  break;//влево
-                case 38:  break;//вверх
-                case 39:  break;//вправо
-                case 40:  break;//вниз
+                case 37:
+                    const left = await server.moveMob('LEFT');
+                    if (left.result) {
+                        render(left.data);
+                    } break; //влево
+                case 38:
+                    const up = await server.moveMob('UP');
+                    if (up.result) {
+                        render(up.data);
+                    } break; //вверх
+                case 39:
+                    const right = await server.moveMob('RIGHT');
+                    if (right.result) {
+                        render(right.data);
+                    } break; //вправо
+                case 40:
+                    const down = await server.moveMob('DOWN');
+                    if (down.result) {
+                        render(down.data);
+                    } break; //вниз
             }
-
-            //server.moveMob();
         });
     }
 

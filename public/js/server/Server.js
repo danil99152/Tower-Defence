@@ -7,8 +7,12 @@ function Server() {
         //transform - поворот за движением мыши
     };
 
-    this.moveMob = function () {
-        return $.get('api', { method: 'moveMob', token });
+    this.finishMob  = () => {
+        return $.get('api', { method: 'finishMob'  , token});
+    };
+
+    this.moveMob = (direction) => {
+        return $.get('api', { method: 'moveMob', direction, token});
     };
 
     this.shoting = function () {

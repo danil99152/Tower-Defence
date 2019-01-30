@@ -75,16 +75,71 @@ class Logic {
         }
         return false;
     }
-    // дойти мобом до точки выхода
-    public function finishMob($gamerId){
 
+    // закончить ход моба
+    public function finishMob($options) {
+        $id = intval($options->id);
+        $mob = $this->getMob($id);
+        if ($mob) {
+            //todo допилить финишмоба
+        }
     }
 
+    // можно ли ходить
+    public function canMove($x, $y)
+    {
+        $map = $this->struct->map;
+        if ($map[$x][$y]->passability == 1) {
+            return true;
+        }
+        return false;
+    }
 
     // подвинуть моба на 1 клетку
-    public function moveMob($options)
-    {
-        //мобы двигаться
+    public function moveMob($options) {
+        $mapWidth = count($this->struct->map[0])-1;
+        $mapHeight  = count($this->struct->map)-1;
+        $id = intval($options->gamerId);
+        $direction = $options->direction;
+        if ($id && $direction) {
+            $mob = $this->getMob(intval($id));
+            if ($mob) {
+                switch ($direction) {
+                    case 'RIGHT':
+                        if ($mob->x+1 <= $mapWidth){
+                            if ($this->canMove($mob->x+1, $mob->y)){
+                                $mob->x++;
+                                return true;
+                            }
+                        } break;
+
+                    case 'LEFT':
+                        if ($mob->x-1 >= 0){
+                            if ($this->canMove($mob->x-1, $mob->y)){
+                                $mob->x--;
+                                return true;
+                            }
+                        } break;
+
+                    case 'UP':
+                        if ($mob->y-1 >= 0){
+                            if ($this->canMove($mob->x, $mob->y-1)){
+                                $mob->y--;
+                                return true;
+                            }
+                        } break;
+
+                    case 'DOWN':
+                        if ($mob->y+1 <= $mapHeight){
+                            if ($this->canMove($mob->x, $mob->y+1)){
+                                $mob->y++;
+                                return true;
+                            }
+                        } break;
+                }
+            }
+        }
+        return false;
     }
 
     private function getTower($id) {
