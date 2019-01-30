@@ -217,10 +217,12 @@ function Game(options) {
                 const result = await server.getStruct();
                 if (result.result) {
                     render(result.data);
+                    console.log(result.data);
                 }
                 $('.game-menu').hide();
                 $('#game').show();
                 startGame();
+                canvasKeyPress();
             } else {
                 alert('Выбери сторону!');
             }

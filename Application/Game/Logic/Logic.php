@@ -30,19 +30,19 @@ class Logic {
         $passCount = 0;
         foreach ($map as $line) {
             foreach ($line as $tile) {
-                if ($tile->passability === 1) {
+                if ($tile->passability == 0) {
                     $passCount++;
                 }
             }
         }
-        if ($passCount > count($mobs)) { // место для мода ещё есть
+        if ($passCount > count($mobs)) { // место для моба ещё есть
             while (true) {
                 $y = rand(0, count($map)-1);
                 $x = rand(0, count($map[0])-1);
-                if ($map[$y][$x]->passability === 0) {
+                if ($map[$x][$y]->passability == 0) {
                     $canAdd = true;
                     foreach ($mobs as $mob) {
-                        if ($mob->x === $x && $mob->y === $y) {
+                        if ($mob->x == $x && $mob->y == $y) {
                             $canAdd = false;
                             break;
                         }
@@ -50,11 +50,12 @@ class Logic {
                     if ($canAdd) {
                         $this->struct->addMob(
                             (object) array(
+                                'id' => $gamerId,
                                 'gamerId' => $gamerId,
                                 'x' => $x,
                                 'y' => $y)
                         );
-                        return true;
+                        return false;
                     }
                 }
             }

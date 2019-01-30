@@ -32,14 +32,18 @@ class Game {
         return true;
     }
 
-    private function addMob($userId) {/*
+    private function addMob($userId) {
+        // удалить всех старых мобов пользователя из БД (и из структуры)
         $this->db->deleteMob($userId);
-        $this->struct->deleteMob($this->db->getMobByUserId($userId));
-        $options = new StdClass();
-        $options = $this->struct->addMob($userId);
-        $this->struct->setMobs($options);
-        $this->db->addMob($options);
-        return true;*/
+        $this->logic->killMob($userId);
+        // создать нового моба
+        $this->logic->addMob($userId);//внутри добавить моба в структуру
+        // добавить моба в БД
+        foreach ($this->struct->mobs as $mob) {
+            $this->db->addMob($mob);
+        }
+
+        return true;
     }
 
     private function addShot($userId){/*

@@ -21,7 +21,11 @@ class Struct {
     public function __construct() {
     }
 
-    public function addMob($userId) {
+    public function addMob($options) {
+        $this->mobs = [];
+        $options->life = self::MOB_LIFE;
+        $options->type = 1;
+        $this->mobs[] = new Mob($options);
     }
 
     public function addTower($options) {
