@@ -110,7 +110,7 @@ class DB {
 
     public function addMob ($options){
         $query = 'INSERT INTO mob (user_id, life, x, y, speed, type) VALUES (
-        '.$options->user_id.',
+        '.$options->gamerId.',
         '.$options->life.',
         '.$options->x.',
         '.$options->y.',

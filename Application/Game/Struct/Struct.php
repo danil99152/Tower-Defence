@@ -24,15 +24,17 @@ class Struct {
     public function addMob($options) {
         $this->mobs = [];
         $options->life = self::MOB_LIFE;
+        $options->speed= self::MOB_SPEED;
         $options->type = 1;
         $this->mobs[] = new Mob($options);
+      //  print_r($options);
     }
 
     public function addTower($options) {
         $this->towers = [];
         $options->damage = self::TOWER_DAMAGE;
         $options->angle = self::TOWER_ANGLE;
-        $options->type = 1;
+        $options->type = rand(0, 3);
         $this->towers[] = new Tower($options);
         //var_export($this->towers);
     }

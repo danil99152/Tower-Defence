@@ -35,12 +35,16 @@ class Game {
     private function addMob($userId) {
         // удалить всех старых мобов пользователя из БД (и из структуры)
         $this->db->deleteMob($userId);
+       // print_r("1");
         $this->logic->killMob($userId);
+      //  print_r("2");
         // создать нового моба
         $this->logic->addMob($userId);//внутри добавить моба в структуру
+      //  print_r("3");
         // добавить моба в БД
         foreach ($this->struct->mobs as $mob) {
             $this->db->addMob($mob);
+         //   print_r("4");
         }
 
         return true;

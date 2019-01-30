@@ -30,7 +30,7 @@ class Logic {
         $passCount = 0;
         foreach ($map as $line) {
             foreach ($line as $tile) {
-                if ($tile->passability == 0) {
+                if ($tile->passability == 1) {
                     $passCount++;
                 }
             }
@@ -39,7 +39,7 @@ class Logic {
             while (true) {
                 $y = rand(0, count($map)-1);
                 $x = rand(0, count($map[0])-1);
-                if ($map[$x][$y]->passability == 0) {
+                if ($map[$x][$y]->passability == 1) {
                     $canAdd = true;
                     foreach ($mobs as $mob) {
                         if ($mob->x == $x && $mob->y == $y) {
