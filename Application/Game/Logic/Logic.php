@@ -171,7 +171,7 @@ class Logic {
             while (true) {
                 $y = rand(0, count($map)-1);
                 $x = rand(0, count($map[0])-1);
-                if ($map[$y][$x]->passability == 0) {
+                if ($map[$x][$y]->passability == 0) {
                     $canAdd = true;
                     foreach ($towers as $tower) {
                         if ($tower->x == $x && $tower->y == $y) {
