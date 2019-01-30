@@ -92,12 +92,13 @@ class DB {
 
     public function addTower($options){
         //print_r($options);
-        $query = 'INSERT INTO tower (user_id, damage, x, y, angle) VALUES (
+        $query = 'INSERT INTO tower (user_id, damage, x, y, angle, type) VALUES (
         '.$options->gamerId.',
         '.$options->damage.',
         '.$options->x.',
         '.$options->y.',
-        '.$options->angle.'
+        '.$options->angle.',
+        '.$options->type.'
     ) ';
         return $this->db->query($query);
     }

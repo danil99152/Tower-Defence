@@ -28,6 +28,7 @@ class Struct {
         $this->towers = [];
         $options->damage = self::TOWER_DAMAGE;
         $options->angle = self::TOWER_ANGLE;
+        $options->type = 1;
         $this->towers[] = new Tower($options);
         //var_export($this->towers);
     }
