@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 22 2018 г., 12:20
+-- Время создания: Янв 30 2019 г., 23:56
 -- Версия сервера: 5.6.41
 -- Версия PHP: 7.2.10
 
@@ -56,13 +56,6 @@ CREATE TABLE `mob` (
   `speed` varchar(45) DEFAULT '1',
   `type` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `mob`
---
-
-INSERT INTO `mob` (`id`, `user_id`, `life`, `x`, `y`, `speed`, `type`) VALUES
-(26, '1', '1500', '0', '0', '5', 0);
 
 -- --------------------------------------------------------
 
@@ -163,14 +156,6 @@ CREATE TABLE `tower` (
   `type` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Дамп данных таблицы `tower`
---
-
-INSERT INTO `tower` (`id`, `user_id`, `damage`, `x`, `y`, `angle`, `type`) VALUES
-(1, '2', '100000', '2', '2', '0.5', 1),
-(12, '1', '500', '2', '2', '0', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -190,8 +175,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `login`, `password`, `token`) VALUES
-(1, 'вася', 'vasya', '123', '78408828f91bd7118c8c16f14d5de233'),
-(2, 'Петя', 'peya', '123', '');
+(1, 'вася', 'vasya', '123', '3305e968abbcba4fb29a9bcdc13f9e39'),
+(2, 'Петя', 'petya', '123', 'cd73cdcbf9970c8ce0708709f07465ec'),
+(3, 'Нул', ' ', ' ', '77e6c01593571bf1906677f53a474850');
 
 --
 -- Индексы сохранённых таблиц
@@ -257,7 +243,7 @@ ALTER TABLE `map`
 -- AUTO_INCREMENT для таблицы `mob`
 --
 ALTER TABLE `mob`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `shot`
@@ -269,19 +255,19 @@ ALTER TABLE `shot`
 -- AUTO_INCREMENT для таблицы `tile`
 --
 ALTER TABLE `tile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT для таблицы `tower`
 --
 ALTER TABLE `tower`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
