@@ -46,18 +46,18 @@ class Game {
         return true;
     }
 
-    private function addShot($userId){/*
+    private function addShot($userId){
         // удалить все старые выстрелы пользователя из БД (и из структуры)
         $this->db->deleteShot($userId);
-        $this->struct->deleteShot($this->db->getShotByUserId($userId));
-        // создать новый выстрел
-        $options = new StdClass();
-        $options = $this->struct->addShot($userId);
-        // добавить выстрел в структуру
-        $this->struct->setShots($options);        
+        $this->logic->delShot($userId);
+        //выстрелить
+        $this->logic->shoting($userId);
         // добавить выстрел в БД
-        $this->db->setShot($options);
-        return true;*/
+        foreach ($this->struct->shots as $shot) {
+            $this->db->addShot($shot);
+        }
+
+        return true;
     }
 
     public function getCommand() {
