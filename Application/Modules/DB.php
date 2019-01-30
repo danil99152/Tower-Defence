@@ -91,12 +91,13 @@ class DB {
     }*/
 
     public function addTower($options){
+        //print_r($options);
         $query = 'INSERT INTO tower (user_id, damage, x, y, angle) VALUES (
-        "'.$options->user_id.'",
-        "'.$options->damage.'",
-        "'.$options->x.'",
-        "'.$options->y.'",
-        "'.$options->angle.'"
+        '.$options->gamerId.',
+        '.$options->damage.',
+        '.$options->x.',
+        '.$options->y.',
+        '.$options->angle.'
     ) ';
         return $this->db->query($query);
     }
@@ -108,12 +109,12 @@ class DB {
 
     public function addMob ($options){
         $query = 'INSERT INTO mob (user_id, life, x, y, speed, type) VALUES (
-        "'.$options->user_id.'",
-        "'.$options->life.'",
-        "'.$options->x.'",
-        "'.$options->y.'",
-        "'.$options->speed.'",
-        "'.$options->type.'"
+        '.$options->user_id.',
+        '.$options->life.',
+        '.$options->x.',
+        '.$options->y.',
+        '.$options->speed.',
+        '.$options->type.'
     )';
         return $this->db->query($query);
     }
@@ -125,13 +126,13 @@ class DB {
 
     public function addShot ($options){
         $query = 'INSERT INTO shot (angle, x, y, speed, user_id, tower_id, status) VALUES (
-        "'.$options->angle.'"
-        "'.$options->x.'",
-        "'.$options->y.'",
-        "'.$options->speed.'",
-        "'.$options->user_id.'",
-        "'.$options->tower_id.'",
-        "'.$options->status.'",
+        '.$options->angle.'
+        '.$options->x.',
+        '.$options->y.',
+        '.$options->speed.',
+        '.$options->user_id.',
+        '.$options->tower_id.',
+        '.$options->status.',
     ) ';
         return $this->db->query($query);
     }

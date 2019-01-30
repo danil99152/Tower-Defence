@@ -100,8 +100,8 @@ function Game(options) {
             const sprite = SPRITES[tile.type];
             canvas.sprite(
                 sprite.img,
-                sprite.sprite[tile.sprite].x, sprite.sprite[tile.sprite].y, window.innerHeight-100, window.innerHeight-100,
-                x * SIZE, y * SIZE, window.innerHeight-100, window.innerHeight-100);
+                sprite.sprite[tile.sprite].x, sprite.sprite[tile.sprite].y, SIZE*3, SIZE*3,
+                x * SIZE, y * SIZE, SIZE, SIZE);
         }
     }
 
@@ -170,7 +170,6 @@ function Game(options) {
 
     function canvasKeyPress() {
         $(document).on('keydown', async event => {
-            //console.log(event.keyCode);
             switch (event.keyCode) {
                 case 37:
                     const left = await server.moveMob('LEFT');

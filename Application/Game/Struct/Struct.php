@@ -19,17 +19,17 @@ class Struct {
     public $map;    // карта
 
     public function __construct() {
-        
     }
 
     public function addMob($userId) {
     }
 
     public function addTower($options) {
-        //$options->id = ?;
+        $this->towers = [];
         $options->damage = self::TOWER_DAMAGE;
         $options->angle = self::TOWER_ANGLE;
         $this->towers[] = new Tower($options);
+        //var_export($this->towers);
     }
 
     public function addShot($userId, $towerId) {

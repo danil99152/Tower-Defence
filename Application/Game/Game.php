@@ -20,13 +20,15 @@ class Game {
 
     private function addTower($userId) {
         // удалить все старые башни пользователя из БД (и из структуры)
-        $tower = $this->db->getTowerByUserId($userId);
-        $this->logic->delTower($tower->id);
         $this->db->deleteTower($userId);
+        $this->logic->delTower($userId);
         // создать новую башню
         $this->logic->addTower($userId);//внутри добавить башню в структуру
         // добавить башню в БД
-        $this->db->addTower($this->struct->towers);
+        foreach ($this->struct->towers as $tower) {
+            $this->db->addTower($tower);
+        }
+        
         return true;
     }
 
@@ -70,6 +72,7 @@ class Game {
 
     public function getStruct() {
         return $this->struct;
+        print_r($this->struct);
     }
 
     public function init($mapId) {
