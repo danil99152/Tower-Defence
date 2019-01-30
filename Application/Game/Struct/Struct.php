@@ -24,10 +24,9 @@ class Struct {
     public function addMob($options) {
         $this->mobs = [];
         $options->life = self::MOB_LIFE;
-        $options->speed= self::MOB_SPEED;
+        $options->speed = self::MOB_SPEED;
         $options->type = 1;
         $this->mobs[] = new Mob($options);
-      //  print_r($options);
     }
 
     public function addTower($options) {
