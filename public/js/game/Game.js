@@ -109,7 +109,7 @@ function Game(options) {
         if(tower && tower.type) {
             const sprite = SPRITES.tower;
             canvas.sprite(sprite.img,
-                sprite.sprite[tower.type - 0].x, sprite.sprite[tower.type - 0].y, 160, 160,
+                sprite.sprite[tower.type - 0].x, sprite.sprite[tower.type - 0].y, 256, 454,
                 tower.x * SIZE, tower.y * SIZE, SIZE, SIZE);
         }
     }
@@ -118,8 +118,8 @@ function Game(options) {
         if (mob && mob.type) {
             const sprite = SPRITES.mob;
             canvas.sprite(sprite.img,
-                sprite.sprite[mob.type - 0].x, sprite.sprite[mob.type - 0].y, 50, 90,
-                mob.x * SIZE, mob.y * SIZE, SIZE-5, SIZE-5);
+                sprite.sprite[mob.type - 0].x, sprite.sprite[mob.type - 0].y, 171, 270,
+                mob.x * SIZE, mob.y * SIZE, SIZE, SIZE);
         }
     }
 

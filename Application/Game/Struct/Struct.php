@@ -34,7 +34,7 @@ class Struct {
         $this->towers = [];
         $options->damage = self::TOWER_DAMAGE;
         $options->angle = self::TOWER_ANGLE;
-        $options->type = rand(0, 3);
+        $options->type = 0;
         $this->towers[] = new Tower($options);
     }
 
