@@ -119,7 +119,7 @@ function Game(options) {
             const sprite = SPRITES.mob;
             canvas.sprite(sprite.img,
                 sprite.sprite[mob.type - 0].x, sprite.sprite[mob.type - 0].y, 50, 90,
-                mob.x * SIZE, mob.y * SIZE, 64, 64);
+                mob.x * SIZE, mob.y * SIZE, SIZE-5, SIZE-5);
         }
     }
 
