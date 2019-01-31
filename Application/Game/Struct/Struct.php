@@ -26,7 +26,7 @@ class Struct {
         $this->mobs = [];
         $options->life = self::MOB_LIFE;
         $options->speed = self::MOB_SPEED;
-        $options->type = 1;
+        $options->type = 0;
         $this->mobs[] = new Mob($options);
     }
 
@@ -42,7 +42,7 @@ class Struct {
     public function addShot($options) {
         $this->shots = [];
         $options->status = self::SHOT_STATUS;
-        $options->type = rand(0, 3);
+        $options->type = 0;
         $this->shots[] = new Shot($options);
     }
 
