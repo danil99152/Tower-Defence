@@ -119,7 +119,7 @@ function Game(options) {
             const sprite = SPRITES.mob;
             canvas.sprite(sprite.img,
                 sprite.sprite[mob.type - 0].x, sprite.sprite[mob.type - 0].y, 50, 90,
-                mob.x * SIZE, mob.y * SIZE, SIZE, SIZE);
+                mob.x * SIZE, mob.y * SIZE, 64, 64);
         }
     }
 
@@ -175,25 +175,25 @@ function Game(options) {
                     const left = await server.moveMob('LEFT');
                     if (left.result) {
                         render(left.data);
-                        console.log("Влево")
+                        console.log("Влево");
                     } break; //влево
                 case 38:
                     const up = await server.moveMob('UP');
                     if (up.result) {
                         render(up.data);
-                        console.log("Вверх")
+                        console.log("Вверх");
                     } break; //вверх
                 case 39:
                     const right = await server.moveMob('RIGHT');
                     if (right.result) {
                         render(right.data);
-                        console.log("Вправо")
+                        console.log("Вправо");
                     } break; //вправо
                 case 40:
                     const down = await server.moveMob('DOWN');
                     if (down.result) {
                         render(down.data);
-                        console.log("Вниз")
+                        console.log("Вниз");
                     } break; //вниз
             }
         });
