@@ -18,10 +18,16 @@ class Game {
         $this->input  = new Input($this->logic);
     }
 
-    private function addTower($userId) {
-        // удалить все старые башни пользователя из БД (и из структуры)
+    private function delOld($userId){
         $this->db->deleteTower($userId);
         $this->logic->delTower($userId);
+        $this->db->deleteMob($userId);
+        $this->logic->killMob($userId);
+    }
+
+    private function addTower($userId) {
+        // удалить все старые башни пользователя из БД (и из структуры)
+        $this->delOld($userId);
         // создать новую башню
         $this->logic->addTower($userId);//внутри добавить башню в структуру
         // добавить башню в БД
@@ -34,8 +40,7 @@ class Game {
 
     private function addMob($userId) {
         // удалить всех старых мобов пользователя из БД (и из структуры)
-        $this->db->deleteMob($userId);
-        $this->logic->killMob($userId);
+        $this->delOld($userId);
         // создать нового моба
         $this->logic->addMob($userId);//внутри добавить моба в структуру
         // добавить моба в БД

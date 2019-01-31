@@ -36,7 +36,6 @@ class Struct {
         $options->angle = self::TOWER_ANGLE;
         $options->type = rand(0, 3);
         $this->towers[] = new Tower($options);
-        //var_export($this->towers);
     }
 
     public function addShot($options) {

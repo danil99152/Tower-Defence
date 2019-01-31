@@ -37,8 +37,8 @@ class Logic {
         }
         if ($passCount > count($mobs)) { // место для моба ещё есть
             while (true) {
-                $y = rand(0, count($map)-1);
-                $x = rand(0, count($map[0])-1);
+                $y = rand(4, 5);
+                $x = rand(4, 6);
                 if ($map[$x][$y]->passability == 1) {
                     $canAdd = true;
                     foreach ($mobs as $mob) {

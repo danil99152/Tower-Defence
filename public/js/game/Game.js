@@ -53,7 +53,7 @@ function Game(options) {
     const imgRoad = new Image();
     imgRoad.src = "public/img/sprites/road.jpg";
 
-    const SIZE = 95;
+    const SIZE = 57;
     const stdSprite = [
         { x: 0, y: 0 },
         { x: SIZE, y: 0 },
@@ -100,7 +100,7 @@ function Game(options) {
             const sprite = SPRITES[tile.type];
             canvas.sprite(
                 sprite.img,
-                sprite.sprite[tile.sprite].x, sprite.sprite[tile.sprite].y, SIZE*3, SIZE*3,
+                sprite.sprite[tile.sprite].x, sprite.sprite[tile.sprite].y, SIZE*5, SIZE*5,
                 x * SIZE, y * SIZE, SIZE, SIZE);
         }
     }
@@ -217,7 +217,6 @@ function Game(options) {
                 const result = await server.getStruct();
                 if (result.result) {
                     render(result.data);
-                    console.log(result.data);
                 }
                 $('.game-menu').hide();
                 $('#game').show();
