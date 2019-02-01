@@ -75,10 +75,16 @@ class Game {
             case $COMMANDS->ADD_MOB  : return $this->addMob  ($options->userId);
             case $COMMANDS->SHOTING  : return $this->addShot ($options->userId);
             case $COMMANDS->MOVE_MOB : return $this->moveMob ($options);
+            case $COMMANDS->ROTATE_TOWER: return $this->rotateTower($options);
         }
         return $this->input->executeCommand($name, $options);
     }
 
+    public function rotateTower($options){
+        $tower = $this->db->getTowerByUserId($options->userId);
+        $this->logic->rotateTower($options->angle, $tower->id);
+        return true;
+    }
     public function moveMob($options) {
         $mob = $this->db->getMobByUserId($options->userId);
         $this->logic->moveMob($options->move, $mob->id);

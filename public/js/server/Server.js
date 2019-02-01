@@ -15,8 +15,8 @@ function Server() {
         return $.get('api', { method: 'moveMob', move, token});
     };
 
-    this.shoting = function () {
-        return $.get('api', { method: 'shoting', token });
+    this.shoting = function (shot) {
+        return $.get('api', { method: 'shoting',shot, token });
         //Линия пересекает ли моба(круг)
     };
 
