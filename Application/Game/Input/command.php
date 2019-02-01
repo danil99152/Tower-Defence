@@ -1,6 +1,7 @@
 <?php
 
 const COMMAND = [
+	'CHANGE_TOWER' => 'changeTower',
     'ROTATE_TOWER' => 'rotateTower',        // повернуть башню
     'SHOTING'      => 'shoting',            // выстрелить
     'MOVE_MOB'     => 'moveMob',            // подвинуть моба

@@ -125,16 +125,17 @@ class DB {
         return $this->db->query($query);
     }
 
-    public function addShot ($options){
-        $query = 'INSERT INTO shot (angle, x, y, speed, user_id, tower_id, status) VALUES (
-            '.$options->angle.'
-            '.$options->x.',
-            '.$options->y.',
-            '.$options->speed.',
-            '.$options->user_id.',
-            '.$options->tower_id.',
-            '.$options->status.',
-        ) ';
+    public function addShot ($shot){
+        $query = 'INSERT INTO shot (angle, x, y, speed, user_id, tower_id, status, type) VALUES (
+            ' . $shot->angle . ',
+            ' . $shot->x . ',
+            ' . $shot->y . ',
+            ' . $shot->speed . ',
+            ' . $shot->gamerId . ',
+            ' . $shot->towerId . ',
+            ' . $shot->status . ',
+            ' . $shot->type . '
+        )';
         return $this->db->query($query);
     }
 
@@ -158,7 +159,10 @@ class DB {
     }
 
     public function updateShots($mapId, $shot){
-        $query = 'UPDATE shot SET status = "' . $shot->status . '" WHERE tower_id=' . $shot->towerId;
+        $query = 'UPDATE shot SET
+            angle = ' . $shot->angle . ',
+            status = ' . $shot->status . '
+            WHERE tower_id=' . $shot->towerId;
         return $this->db->query($query);
     }
 }

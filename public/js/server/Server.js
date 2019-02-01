@@ -2,22 +2,13 @@ function Server() {
 
     let token;
 
-    this.rotateTower = function (angle) {
-        return $.get('api', { method: 'rotateTower', angle, token });
+    this.changeTower = function (change) {
+        return $.get('api', { method: 'changeTower', change, token });
         //transform - поворот за движением мыши
-    };
-
-    this.finishMob  = () => {
-        return $.get('api', { method: 'finishMob'  , token});
     };
 
     this.moveMob = function (move) {
         return $.get('api', { method: 'moveMob', move, token});
-    };
-
-    this.shoting = function (shot) {
-        return $.get('api', { method: 'shoting',shot, token });
-        //Линия пересекает ли моба(круг)
     };
 
     this.getStruct = function () {

@@ -173,13 +173,15 @@ class Logic {
         return false;
     }
 
-    public function rotateTower($angle, $id) {
+    public function rotateTower($change, $id) {
         $tower = $this->getTower($id);
-        if ($tower && $angle) {
-            switch ($angle) {
-                case 37: $angle+=45; break;
-                case 39: $angle-=45; break;
+        $angle = $tower->angle;
+        if ($tower && $change) {
+            switch ($change) {
+                case 37: $angle += 45; break;
+                case 39: $angle -= 45; break;
             }
+            if($angle > 350 || $angle < -350) $angle = 0;
             $tower->angle = $angle;
             return true;
         }
@@ -207,23 +209,16 @@ class Logic {
                 if ($shot->id === $id){
                     return $shot;
                 }
-
             }
-
         }
         return null;
     }
 
     // выстрелить башней
-    public function shoting($shot, $id)
-    {
+    public function shoting($id) {
         $tower = $this->getTower($id);
-        if ($tower && $shot) {
-            switch ($shot) {
-                case 32:
-                    $this->shoot($id);
-                    break;
-            }
+        if($tower) {
+            $this->struct->addShot($tower);
             return true;
         }
         return false;
@@ -238,8 +233,6 @@ class Logic {
         }
         return false; */
     }
-
-    // повернуть башню на угол
 
     public function delShot($id){
         $shot = $this->getShot($id);

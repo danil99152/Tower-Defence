@@ -3,7 +3,7 @@ function Game(options) {
     const server = options.server;
     const callbacks = options.callbacks || {};
 
-    const canvas = new Canvas(canvasKeyPress);
+    const canvas = new Canvas();
 
     let interval = null;
 
@@ -138,28 +138,21 @@ function Game(options) {
     }
 
 
-    function canvasKeyPress() {
-        $(document).on('keydown', async event => {
-            if(event.keyCode > 36 && event.keyCode < 41) {
-                server.moveMob(event.keyCode);
-            }
-        });
-    }
-
-    function rotateTower() {
-        $(document).on('keydown', async event => {
-            if(event.keyCode == 37 && event.keyCode == 39){
-                server.rotateTower(event.keyCode);
-            }
-        });
-    }
-
-    function shot() {
-        $(document).on('keydown', async event => {
-            if(event.keyCode == 32){
-                server.shoting(event.keyCode);
-            }
-        });
+    function canvasKeyPress(method) {
+        if(method === 'addMob') {
+            $(document).on('keydown', async event => {
+                if(event.keyCode > 36 && event.keyCode < 41) {
+                    server.moveMob(event.keyCode);
+                }
+            });
+        } else {
+            $(document).on('keydown', async event => {
+                if(event.keyCode > 36 && event.keyCode < 40) {
+                    $temp = await server.changeTower(event.keyCode);
+                    console.log($temp);
+                }
+            });
+        }
     }
 
     function init() {
@@ -184,7 +177,7 @@ function Game(options) {
                 $('.game-menu').hide();
                 $('#game').show();
                 startGame();
-                canvasKeyPress();
+                canvasKeyPress(method);
             } else {
                 alert('Выбери сторону!');
             }

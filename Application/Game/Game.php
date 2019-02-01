@@ -50,12 +50,12 @@ class Game {
         return true;
     }
 
-    private function addShot($userId){
+    private function addShot($userId, $id){
         // удалить все старые выстрелы пользователя из БД (и из структуры)
         $this->db->deleteShot($userId);
         $this->logic->delShot($userId);
         //выстрелить
-        $this->logic->shoting($userId);
+        $this->logic->shoting($id);
         // добавить выстрел в БД
         foreach ($this->struct->shots as $shot) {
             $this->db->addShot($shot);
@@ -71,18 +71,22 @@ class Game {
     public function executeCommand($name, $options = null) {
         $COMMANDS = $this->input->getCommand();
         switch ($name) {
-            case $COMMANDS->ADD_TOWER: return $this->addTower($options->userId);
-            case $COMMANDS->ADD_MOB  : return $this->addMob  ($options->userId);
-            case $COMMANDS->SHOTING  : return $this->addShot ($options->userId);
-            case $COMMANDS->MOVE_MOB : return $this->moveMob ($options);
-            case $COMMANDS->ROTATE_TOWER: return $this->rotateTower($options);
+            case $COMMANDS->ADD_TOWER    : return $this->addTower($options->userId);
+            case $COMMANDS->ADD_MOB      : return $this->addMob  ($options->userId);
+            case $COMMANDS->SHOTING      : return $this->addShot ($options->userId);
+            case $COMMANDS->MOVE_MOB     : return $this->moveMob ($options);
+            case $COMMANDS->CHANGE_TOWER : return $this->changeTower($options);
         }
         return $this->input->executeCommand($name, $options);
     }
 
-    public function rotateTower($options){
+    public function changeTower($options){
         $tower = $this->db->getTowerByUserId($options->userId);
-        $this->logic->rotateTower($options->angle, $tower->id);
+        if($options->change == 38) {
+            $this->addShot($options->userId, $tower->id);
+        } else {
+            $this->logic->rotateTower($options->change, $tower->id);
+        }
         return true;
     }
     public function moveMob($options) {

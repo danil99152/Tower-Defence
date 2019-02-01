@@ -12,6 +12,7 @@ class Struct {
     const TOWER_ANGLE = 0;
     const MOB_LIFE = 1500;
     const MOB_SPEED = 5;
+    const SHOT_SPEED = 10;
     const SHOT_STATUS = 1; //1-летит, 0-не летит (на случай подсчета выстрелов)
   
     public $towers; // список башен
@@ -41,7 +42,9 @@ class Struct {
     public function addShot($options) {
         $this->shots = [];
         $options->status = self::SHOT_STATUS;
-        $options->type = 0;
+        $options->speed = self::SHOT_SPEED;
+        $options->towerId = $options->id;
+        unset($options->id);
         $this->shots[] = new Shot($options);
     }
 
