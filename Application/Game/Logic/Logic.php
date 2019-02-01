@@ -121,7 +121,7 @@ class Logic {
         return false;
 	}
 
-    public function getTower($id) {
+    private function getTower($id) {
         if ($id) {
             $towers = $this->struct->towers;
             foreach ($towers as $tower) {
