@@ -186,7 +186,6 @@ class Logic {
         return false;
     }
 
-
     // удалить башню
     public function delTower($id) {
         $tower = $this->getTower($id);
