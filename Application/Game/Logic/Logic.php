@@ -177,8 +177,8 @@ class Logic {
         $tower = $this->getTower($id);
         if ($tower && $angle) {
             switch ($angle) {
-                case 37: $angle++; break;
-                case 39: $angle--; break;
+                case 37: $angle+=45; break;
+                case 39: $angle-=45; break;
             }
             $tower->angle = $angle;
             return true;
