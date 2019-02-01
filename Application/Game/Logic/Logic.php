@@ -73,7 +73,7 @@ class Logic {
         }
         return false;
     }
-	
+
     // дойти мобом до точки выхода
     public function finishMob($options) {
         $id = intval($options->id);
@@ -98,41 +98,25 @@ class Logic {
         $mapHeight  = count($this->struct->map)-1;
         $mapWidth = count($this->struct->map[0])-1;
         $mob = $this->getMob($id);
+        $x = $mob->x;
+        $y = $mob->y;
         if ($mob && $move) {
             switch ($move) {
-                case 39://39 - вправо
-                    if ($mob->x+1 <= $mapWidth){
-                        if ($this->canMove($mob->x+1, $mob->y)) {
-                            $mob->x = $mob->x+1;
-                            return true;
-                        }
-                    } break;
-
-                case 37://37 - влево
-                    if ($mob->x-1 >= 0){
-                        if ($this->canMove($mob->x-1, $mob->y)){
-                            $mob->x = $mob->x-1;
-                            return true;
-                        }
-                    } break;
-
-                case 38://38 - вверх
-                    if ($mob->y-1 >= 0){
-                        if ($this->canMove($mob->x, $mob->y-1)){
-                            $mob->y = $mob->y-1;
-                            return true;
-                        }
-                    } break;
-
-                case 40://40 - вниз
-                    if ($mob->y+1 <= $mapHeight){
-                        if ($this->canMove($mob->x, $mob->y+1)){
-                            $mob->y = $mob->y+1;
-                            return true;
-                        }
-                    } break;
+                case 37: $x--; break;
+                case 38: $y--; break;
+                case 39: $x++; break;
+                case 40: $y++; break;
             }
-            //$this->finishMob();
+            if ($x <= $mapWidth && $x >= 0 && $y <= $mapHeight && $y >= 0){
+                if ($this->canMove($x, $y)) {
+                    $mob->x = $x;
+                    $mob->y = $y;
+                    return true;
+                }
+            } else {
+                $this->killMob($id);
+                //$this->finishMob();
+            }
         }
         return false;
 	}
