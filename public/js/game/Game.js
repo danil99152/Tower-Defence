@@ -171,8 +171,7 @@ function Game(options) {
     function canvasKeyPress() {
         $(document).on('keydown', async event => {
             if(event.keyCode > 36 && event.keyCode < 41) {
-                const temp = await server.moveMob(event.keyCode);
-                console.log(temp);
+                server.moveMob(event.keyCode);
             }
         });
     }

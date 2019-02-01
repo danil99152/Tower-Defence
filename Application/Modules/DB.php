@@ -144,21 +144,21 @@ class DB {
     }
 
     public function updateTowers($mapId, $tower){
-        $query = 'UPDATE tower SET angle="' . $tower->angle . '" WHERE user_id=' . $tower->id;
+        $query = 'UPDATE tower SET angle="' . $tower->angle . '" WHERE user_id=' . $tower->gamerId;
         return $this->db->query($query);
     }
 
     public function updateMobs($mapId, $mob){
         $query = 'UPDATE mob SET
-            life = "' . $mob->life . '",
-            x = "' . $mob->x . '",
-            y = "' . $mob->y . '"
-            WHERE user_id=' . $mob->id;
+            life = ' . $mob->life . ',
+            x = ' . $mob->x . ',
+            y = ' . $mob->y . '
+            WHERE user_id=' . $mob->gamerId;
         return $this->db->query($query);
     }
 
     public function updateShots($mapId, $shot){
-        $query = 'UPDATE shot SET status = "' . $shot->status . '" WHERE tower_id=' . $shot->id;
+        $query = 'UPDATE shot SET status = "' . $shot->status . '" WHERE tower_id=' . $shot->towerId;
         return $this->db->query($query);
     }
 }

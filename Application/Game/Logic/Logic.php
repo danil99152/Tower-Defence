@@ -48,7 +48,6 @@ class Logic {
                     if ($canAdd) {
                         $this->struct->addMob(
                             (object) array(
-                                'id' => $gamerId,
                                 'gamerId' => $gamerId,
                                 'x' => $x,
                                 'y' => $y)
@@ -95,16 +94,16 @@ class Logic {
     }
 
     // подвинуть моба на 1 клетку
-    public function moveMob($move, $gamerId) {
+    public function moveMob($move, $id) {
         $mapHeight  = count($this->struct->map)-1;
         $mapWidth = count($this->struct->map[0])-1;
-        $mob = $this->getMob($gamerId);
+        $mob = $this->getMob($id);
         if ($mob && $move) {
             switch ($move) {
                 case 39://39 - вправо
                     if ($mob->x+1 <= $mapWidth){
-                        if ($this->canMove($mob->x+1, $mob->y)){
-                            $mob->x++;
+                        if ($this->canMove($mob->x+1, $mob->y)) {
+                            $mob->x = $mob->x+1;
                             return true;
                         }
                     } break;
@@ -112,7 +111,7 @@ class Logic {
                 case 37://37 - влево
                     if ($mob->x-1 >= 0){
                         if ($this->canMove($mob->x-1, $mob->y)){
-                            $mob->x--;
+                            $mob->x = $mob->x-1;
                             return true;
                         }
                     } break;
@@ -120,7 +119,7 @@ class Logic {
                 case 38://38 - вверх
                     if ($mob->y-1 >= 0){
                         if ($this->canMove($mob->x, $mob->y-1)){
-                            $mob->y--;
+                            $mob->y = $mob->y-1;
                             return true;
                         }
                     } break;
@@ -128,11 +127,12 @@ class Logic {
                 case 40://40 - вниз
                     if ($mob->y+1 <= $mapHeight){
                         if ($this->canMove($mob->x, $mob->y+1)){
-                            $mob->y++;
+                            $mob->y = $mob->y+1;
                             return true;
                         }
                     } break;
             }
+            //$this->finishMob();
         }
         return false;
 	}
@@ -177,7 +177,6 @@ class Logic {
                     if ($canAdd) {
                         $this->struct->addTower(
                             (object) array(
-                                'id' => $gamerId,
                                 'gamerId' => $gamerId,
                                 'x' => $x,
                                 'y' => $y)
