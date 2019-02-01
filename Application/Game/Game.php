@@ -23,6 +23,8 @@ class Game {
         $this->logic->delTower($userId);
         $this->db->deleteMob($userId);
         $this->logic->killMob($userId);
+        $this->db->deleteShot($userId);
+        $this->logic->delShot($userId);
     }
 
     private function addTower($userId) {
@@ -87,7 +89,7 @@ class Game {
         } else {
             $this->logic->rotateTower($options->change, $tower->id);
         }
-        return true;
+        return $this->logic->getTower($tower->id);
     }
     public function moveMob($options) {
         $mob = $this->db->getMobByUserId($options->userId);

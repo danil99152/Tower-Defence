@@ -48,6 +48,11 @@ class Router {
                 if ($method === 'getStruct') {
                     return $this->good($this->game->getStruct());
                 }
+                if ($method === 'changeTower') {
+                    $temp = $this->game->changeTower($options);
+                    $this->game->update(1);
+                    return $temp;
+                }
                 $COMMAND = $this->game->getCommand();
                 foreach ($COMMAND as $command) {
                     if ($method === $command) {

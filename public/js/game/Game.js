@@ -13,7 +13,7 @@ function Game(options) {
 
     // спрайты башен на карте
     const imgTower = new Image();
-    imgTower.src = "public/img/sprites/towers_160x160.png";
+    imgTower.src = "public/img/sprites/tower.png";
 
     // спрайты мобов на карте
     const imgMob = new Image();
@@ -79,7 +79,7 @@ function Game(options) {
         if(tower && tower.type) {
             const sprite = SPRITES.tower;
             canvas.sprite(sprite.img,
-                sprite.sprite[tower.type - 0].x, sprite.sprite[tower.type - 0].y, 256, 454,
+                sprite.sprite[tower.type - 0].x, sprite.sprite[tower.type - 0].y, 64, 64,
                 tower.x * SIZE, tower.y * SIZE, SIZE, SIZE);
         }
     }
@@ -148,8 +148,11 @@ function Game(options) {
         } else {
             $(document).on('keydown', async event => {
                 if(event.keyCode > 36 && event.keyCode < 40) {
-                    $temp = await server.changeTower(event.keyCode);
-                    console.log($temp);
+                    var result = await server.changeTower(event.keyCode);
+                    if (result) {
+                        //console.log(result.angle);
+                        imgTower.rotate(result.angle*Math.PI/180);
+                    }
                 }
             });
         }
