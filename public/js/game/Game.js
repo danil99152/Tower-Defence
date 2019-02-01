@@ -215,6 +215,8 @@ function Game(options) {
                 $('#game').show();
                 startGame();
                 canvasKeyPress();
+                rotateTower();
+                shot();
             } else {
                 alert('Выбери сторону!');
             }
