@@ -11,8 +11,8 @@ function Server() {
         return $.get('api', { method: 'finishMob'  , token});
     };
 
-    this.moveMob = (direction) => {
-        return $.get('api', { method: 'moveMob', direction, token});
+    this.moveMob = function (move) {
+        return $.get('api', { method: 'moveMob', move, token});
     };
 
     this.shoting = function () {

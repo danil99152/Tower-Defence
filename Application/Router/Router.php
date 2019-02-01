@@ -42,7 +42,6 @@ class Router {
                 return ($result) ? $this->good($result) : $this->bad('logout fail');
             }
             $userId = $this->user->checkToken($options);
-            //$userId = true;
             if ($userId) {
                 $options->userId = $userId;
                 $this->game->init(1);

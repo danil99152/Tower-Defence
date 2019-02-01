@@ -15,9 +15,7 @@ class Logic {
                 if ($mob->id === $id){
                     return $mob;
                 }
-
             }
-
         }
         return null;
     }
@@ -97,47 +95,43 @@ class Logic {
     }
 
     // подвинуть моба на 1 клетку
-    public function moveMob($options) {
-        $mapWidth = count($this->struct->map[0])-1;
+    public function moveMob($move, $gamerId) {
         $mapHeight  = count($this->struct->map)-1;
-        $id = intval($options->gamerId);
-        $direction = $options->direction;
-        if ($id && $direction) {
-            $mob = $this->getMob(intval($id));
-            if ($mob) {
-                switch ($direction) {
-                    case 'RIGHT':
-                        if ($mob->x+1 <= $mapWidth){
-                            if ($this->canMove($mob->x+1, $mob->y)){
-                                $mob->x++;
-                                return true;
-                            }
-                        } break;
+        $mapWidth = count($this->struct->map[0])-1;
+        $mob = $this->getMob($gamerId);
+        if ($mob && $move) {
+            switch ($move) {
+                case 39://39 - вправо
+                    if ($mob->x+1 <= $mapWidth){
+                        if ($this->canMove($mob->x+1, $mob->y)){
+                            $mob->x++;
+                            return true;
+                        }
+                    } break;
 
-                    case 'LEFT':
-                        if ($mob->x-1 >= 0){
-                            if ($this->canMove($mob->x-1, $mob->y)){
-                                $mob->x--;
-                                return true;
-                            }
-                        } break;
+                case 37://37 - влево
+                    if ($mob->x-1 >= 0){
+                        if ($this->canMove($mob->x-1, $mob->y)){
+                            $mob->x--;
+                            return true;
+                        }
+                    } break;
 
-                    case 'UP':
-                        if ($mob->y-1 >= 0){
-                            if ($this->canMove($mob->x, $mob->y-1)){
-                                $mob->y--;
-                                return true;
-                            }
-                        } break;
+                case 38://38 - вверх
+                    if ($mob->y-1 >= 0){
+                        if ($this->canMove($mob->x, $mob->y-1)){
+                            $mob->y--;
+                            return true;
+                        }
+                    } break;
 
-                    case 'DOWN':
-                        if ($mob->y+1 <= $mapHeight){
-                            if ($this->canMove($mob->x, $mob->y+1)){
-                                $mob->y++;
-                                return true;
-                            }
-                        } break;
-                }
+                case 40://40 - вниз
+                    if ($mob->y+1 <= $mapHeight){
+                        if ($this->canMove($mob->x, $mob->y+1)){
+                            $mob->y++;
+                            return true;
+                        }
+                    } break;
             }
         }
         return false;

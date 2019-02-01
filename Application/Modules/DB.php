@@ -93,13 +93,13 @@ class DB {
     public function addTower($options){
         //print_r($options);
         $query = 'INSERT INTO tower (user_id, damage, x, y, angle, type) VALUES (
-        '.$options->gamerId.',
-        '.$options->damage.',
-        '.$options->x.',
-        '.$options->y.',
-        '.$options->angle.',
-        '.$options->type.'
-    ) ';
+            '.$options->gamerId.',
+            '.$options->damage.',
+            '.$options->x.',
+            '.$options->y.',
+            '.$options->angle.',
+            '.$options->type.'
+        ) ';
         return $this->db->query($query);
     }
 
@@ -110,13 +110,13 @@ class DB {
 
     public function addMob ($options){
         $query = 'INSERT INTO mob (user_id, life, x, y, speed, type) VALUES (
-        '.$options->gamerId.',
-        '.$options->life.',
-        '.$options->x.',
-        '.$options->y.',
-        '.$options->speed.',
-        '.$options->type.'
-    )';
+            '.$options->gamerId.',
+            '.$options->life.',
+            '.$options->x.',
+            '.$options->y.',
+            '.$options->speed.',
+            '.$options->type.'
+        )';
         return $this->db->query($query);
     }
 
@@ -127,14 +127,14 @@ class DB {
 
     public function addShot ($options){
         $query = 'INSERT INTO shot (angle, x, y, speed, user_id, tower_id, status) VALUES (
-        '.$options->angle.'
-        '.$options->x.',
-        '.$options->y.',
-        '.$options->speed.',
-        '.$options->user_id.',
-        '.$options->tower_id.',
-        '.$options->status.',
-    ) ';
+            '.$options->angle.'
+            '.$options->x.',
+            '.$options->y.',
+            '.$options->speed.',
+            '.$options->user_id.',
+            '.$options->tower_id.',
+            '.$options->status.',
+        ) ';
         return $this->db->query($query);
     }
 
@@ -143,28 +143,22 @@ class DB {
         return $this->db->query($query)->fetchObject('stdClass');
     }
 
-    public function updateTowers($mapId, $towers){
-        return true;
+    public function updateTowers($mapId, $tower){
+        $query = 'UPDATE tower SET angle="' . $tower->angle . '" WHERE user_id=' . $tower->id;
+        return $this->db->query($query);
     }
 
-    public function updateMobs($user_id){
-        return true;
+    public function updateMobs($mapId, $mob){
+        $query = 'UPDATE mob SET
+            life = "' . $mob->life . '",
+            x = "' . $mob->x . '",
+            y = "' . $mob->y . '"
+            WHERE user_id=' . $mob->id;
+        return $this->db->query($query);
     }
 
-    public function updateShots($mapId, $shots){
-        return true;
-    }
-// вот тут изменения(ниже)
-	  public function  deleteElderStep($user_id){
-        $query = 'DELETE FROM mob WHERE x AND y WHERE user_id = '.$user_id.'';
-        return $this->db->query($query)->fetchObject('stdClass');
-    }
-
-    public function  moveMob($options){
-        $query = 'INSERT INTO mob(x,y) VALUES {
-        "'.$options->x.'",
-        "'.$options->y.'",
-          } ';
+    public function updateShots($mapId, $shot){
+        $query = 'UPDATE shot SET status = "' . $shot->status . '" WHERE tower_id=' . $shot->id;
         return $this->db->query($query);
     }
 }

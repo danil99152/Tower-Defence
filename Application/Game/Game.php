@@ -34,7 +34,6 @@ class Game {
         foreach ($this->struct->towers as $tower) {
             $this->db->addTower($tower);
         }
-        
         return true;
     }
 
@@ -75,14 +74,13 @@ class Game {
             case $COMMANDS->ADD_TOWER: return $this->addTower($options->userId);
             case $COMMANDS->ADD_MOB  : return $this->addMob  ($options->userId);
             case $COMMANDS->SHOTING  : return $this->addShot ($options->userId);
-            case $COMMANDS->MOVE_MOB : return $this->moveMob ($options);
+            case $COMMANDS->MOVE_MOB : return $this->moveMob ($options->move, $options->userId);
         }
         return $this->input->executeCommand($name, $options);
     }
 
-    public function moveMob($options){
-        $logic = $this->logic;
-        return $logic->moveMob($options);
+    public function moveMob($move, $gamerId) {
+        return $this->logic->moveMob($move, $gamerId);
     }
 
     public function getStruct() {
@@ -107,11 +105,18 @@ class Game {
             $map = $this->db->getMap($mapId);
             if ($map) {
                 // записать башни
-                $this->db->updateTowers($mapId, $this->struct->towers);
+                foreach ($this->struct->towers as $tower) {
+                    $this->db->updateTowers($mapId, $tower);
+                }
                 // записать города
-                $this->db->updateMobs($mapId, $this->struct->mobs);
+                foreach ($this->struct->mobs as $mob) {
+                    $this->db->updateMobs($mapId, $mob);
+                }
                 // записать выстрелы
-                $this->db->updateShots($mapId, $this->struct->shots);
+                foreach ($this->struct->shots as $shot) {
+                    $this->db->updateShots($mapId, $shot);
+                }
+
                 return true;
             }
         }
