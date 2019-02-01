@@ -134,7 +134,7 @@ function Game(options) {
 
     function startGame() {
         stopGame();
-        interval = setInterval(refresh, 1000);
+        interval = setInterval(refresh, 100);
     }
 
 
@@ -185,8 +185,6 @@ function Game(options) {
                 $('#game').show();
                 startGame();
                 canvasKeyPress();
-                rotateTower();
-                shot();
             } else {
                 alert('Выбери сторону!');
             }
