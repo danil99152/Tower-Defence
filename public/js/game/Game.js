@@ -7,35 +7,6 @@ function Game(options) {
 
     let interval = null;
 
-    //  TODO: Функция должна поворачивать спрайт башен, но выдает ошибку связанную с jquery - исправить
-    // (function($) {
-    //     $.fn.rotateImg = function(options) {
-    //         var defaults = {deg : 0};
-    //         var settings = $.extend( {}, defaults, options );
-    //         return this.each(function() {
-    //             var img = $(this).css({position: 'absolute'});
-    //             var imgpos = img.position();
-    //             var x0, y0;
-    //             $(window).load(function() {
-    //                 x0 = imgpos.left + img.width() / 2;
-    //                 y0 = imgpos.top + img.height() / 2
-    //             });
-    //             var x, y, x1, y1, r;
-    //             $("html").mousemove(function(e) {
-    //                 x1 = e.pageX;
-    //                 y1 = e.pageY;
-    //                 x = x1 - x0;
-    //                 y = y1 - y0;
-    //                 r = 180 + settings.deg - 180 / Math.PI * Math.atan2(y, x);
-    //                 img.css("transform", "rotate(-" + r + "deg)");
-    //                 img.css("-moz-transform", "rotate(-" + r + "deg)");
-    //                 img.css("-webkit-transform", "rotate(-" + r + "deg)");
-    //                 img.css("-o-transform", "rotate(-" + r + "deg)")
-    //             })
-    //         })
-    //     }
-    // })(jQuery);
-
     // картинка с травой
     const imgGrass = new Image();
     imgGrass.src = "public/img/sprites/grass.png";
@@ -43,7 +14,6 @@ function Game(options) {
     // спрайты башен на карте
     const imgTower = new Image();
     imgTower.src = "public/img/sprites/towers_160x160.png";
-    //$('imgTower').rotateImg({deg : 0});
 
     // спрайты мобов на карте
     const imgMob = new Image();
