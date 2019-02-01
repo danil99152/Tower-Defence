@@ -173,9 +173,19 @@ function Game(options) {
             if(event.keyCode > 36 && event.keyCode < 41) {
                 server.moveMob(event.keyCode);
             }
+        });
+    }
+
+    function rotateTower() {
+        $(document).on('keydown', async event => {
             if(event.keyCode == 37 && event.keyCode == 39){
                 server.rotateTower(event.keyCode);
             }
+        });
+    }
+
+    function shot() {
+        $(document).on('keydown', async event => {
             if(event.keyCode == 32){
                 server.shoting(event.keyCode);
             }
