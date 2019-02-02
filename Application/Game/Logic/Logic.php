@@ -235,12 +235,12 @@ class Logic {
             $y = $shot->y;
             if($x <= $mapWidth && $x >= 0 && $y <= $mapHeight && $y >= 0) {
                 if ($angle==0){
-                    while ($x < $mapWidth-1) {
+                    while ($x < $mapWidth) {
                         $x++;
                     }
                 }
                 if ($angle==45){
-                    while ($x < $mapWidth-1 && $y > 0){
+                    while ($x < $mapWidth && $y > 0){
                         $x++;
                         $y--;
                     }
@@ -262,18 +262,18 @@ class Logic {
                     }
                 }
                 if ($angle == 225){
-                    while ($x > 0 && $y < $mapHeight-1){
+                    while ($x > 0 && $y < $mapHeight){
                         $x--;
                         $y++;
                     }
                 }
                 if ($angle == 270){
-                    while ($y < $mapHeight-1){
+                    while ($y < $mapHeight){
                         $y++;
                     }
                 }
                 if ($angle == 315){
-                    while ($x < $mapWidth-1 && $y < $mapHeight-1){
+                    while ($x < $mapWidth && $y < $mapHeight){
                         $x++;
                         $y++;
                     }
