@@ -234,57 +234,48 @@ class Logic {
             $x = $shot->x;
             $y = $shot->y;
             if($x <= $mapWidth && $x >= 0 && $y <= $mapHeight && $y >= 0) {
-                if($angle >= 0 && $angle <= 180) {//правая сторона
-                    if($angle >= 0 && $angle <= 90) {//верхняя часть
-                        switch ($angle) {
-                            case 0:
-                                while ($y!=0){
-                                $y--;
-                                }
-                                break;
-                            case 90: $x++; break;
-                            default:
-                                while ($x<=$mapWidth && $y!=0) {
-                                    $x++;
-                                    $y--;
-                                }
-                            break;
-                        }
-                    } else {//нижняя часть
-                        switch ($angle) {
-                            case 180:
-                                while ($y<=$mapHeight){
-                                $y++;
-                                }
-                                break;
-                            default:
-                                while ($x<=$mapWidth && $y<=$mapHeight) {
-                                    $x++;
-                                    $y++;
-                                }
-                            break;
-                        }
+                if ($angle==0){
+                    while ($x < $mapWidth-1) {
+                        $x++;
                     }
-                } else {//левая сторона
-                    if($angle >= 270 && $angle < 360) {//верхняя часть
-                        switch ($angle) {
-                            case 270:
-                                while ($x!=0){
-                                $x--;
-                                }
-                                break;
-                            default:
-                                while ($x!=0 && $y!=0) {
-                                    $x--;
-                                    $y--;
-                                }
-                            break;
-                        }
-                    } else {//нижняя часть
-                        while ($x!=0 && $y<=$mapHeight) {
-                            $x--;
-                            $y++;
-                        }
+                }
+                if ($angle==45){
+                    while ($x < $mapWidth-1 && $y > 0){
+                        $x++;
+                        $y--;
+                    }
+                }
+                if ($angle==90){
+                    while ($y > 0){
+                        $y--;
+                    }
+                }
+                if ($angle==135){
+                    while ($x > 0 && $y > 0){
+                        $x--;
+                        $y--;
+                    }
+                }
+                if ($angle==180){
+                    while ($x > 0){
+                        $x--;
+                    }
+                }
+                if ($angle == 225){
+                    while ($x > 0 && $y < $mapHeight-1){
+                        $x--;
+                        $y++;
+                    }
+                }
+                if ($angle == 270){
+                    while ($y < $mapHeight-1){
+                        $y++;
+                    }
+                }
+                if ($angle == 315){
+                    while ($x < $mapWidth-1 && $y < $mapHeight-1){
+                        $x++;
+                        $y++;
                     }
                 }
                 $shot->x = $x;
