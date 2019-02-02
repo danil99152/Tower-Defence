@@ -237,34 +237,54 @@ class Logic {
                 if($angle >= 0 && $angle <= 180) {//правая сторона
                     if($angle >= 0 && $angle <= 90) {//верхняя часть
                         switch ($angle) {
-                            case 0: $y--; break;
+                            case 0:
+                                while ($y!=0){
+                                $y--;
+                                }
+                                break;
                             case 90: $x++; break;
                             default:
-                                $x++;
-                                $y--;
+                                while ($x<=$mapWidth && $y!=0) {
+                                    $x++;
+                                    $y--;
+                                }
                             break;
                         }
                     } else {//нижняя часть
                         switch ($angle) {
-                            case 180: $y++; break;
-                            default:
-                                $x++;
+                            case 180:
+                                while ($y<=$mapHeight){
                                 $y++;
+                                }
+                                break;
+                            default:
+                                while ($x<=$mapWidth && $y<=$mapHeight) {
+                                    $x++;
+                                    $y++;
+                                }
                             break;
                         }
                     }
                 } else {//левая сторона
                     if($angle >= 270 && $angle < 360) {//верхняя часть
                         switch ($angle) {
-                            case 270: $x--; break;
-                            default:
+                            case 270:
+                                while ($x!=0){
                                 $x--;
-                                $y--;
+                                }
+                                break;
+                            default:
+                                while ($x!=0 && $y!=0) {
+                                    $x--;
+                                    $y--;
+                                }
                             break;
                         }
                     } else {//нижняя часть
-                        $x--;
-                        $y++;
+                        while ($x!=0 && $y<=$mapHeight) {
+                            $x--;
+                            $y++;
+                        }
                     }
                 }
                 $shot->x = $x;
