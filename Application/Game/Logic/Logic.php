@@ -225,13 +225,62 @@ class Logic {
     }
 
     // лететь выстрелом
-    public function shoot($id){
-        /*$mob = $this->getMob($id);
-        if ($mob){
-            $this->damage($id)->$mob($id);
-            return true;
+    public function shoot($id, $angle){
+        $tower = $this->getTower($id);
+        $shot = $this->getShot($id);
+        $mapHeight  = count($this->struct->map)-1;
+        $mapWidth = count($this->struct->map[0])-1;
+        $shot->x = $tower->x;
+        $shot->y = $tower->y;
+        $x = $shot->x;
+        $y = $shot->y;
+        if ($angle==0 || $angle==360){
+            while ($x <= $mapWidth) {
+                $x++;
+            }
         }
-        return false; */
+        if ($angle==45){
+            while ($x <= $mapWidth && $y != 0){
+                $x++;
+                $y--;
+            }
+        }
+        if ($angle==90){
+            while ($y != 0){
+                $y--;
+            }
+        }
+        if ($angle==135){
+            while ($x != 0 && $y != 0){
+                $x--;
+                $y--;
+            }
+        }
+        if ($angle==180){
+            while ($x != 0){
+                $x--;
+            }
+        }
+        if ($angle == 225){
+            while ($x != 0 && $y<=$mapHeight){
+                $x--;
+                $y++;
+            }
+        }
+        if ($angle == 270){
+            while ($y<=$mapHeight){
+                $y++;
+            }
+        }
+        if ($angle == 315){
+            while ($x <= $mapWidth && $y<=$mapHeight){
+                $x++;
+                $y++;
+            }
+        }
+        $shot->x = $x;
+        $shot->y = $y;
+        return true;
     }
 
     public function delShot($id){
