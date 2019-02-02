@@ -46,6 +46,7 @@ class Router {
                 $options->userId = $userId;
                 $this->game->init(1);
                 if ($method === 'getStruct') {
+                    $this->game->moveShot($userId);
                     return $this->good($this->game->getStruct());
                 }
                 $COMMAND = $this->game->getCommand();

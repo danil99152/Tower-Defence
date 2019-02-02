@@ -181,7 +181,8 @@ class Logic {
                 case 37: $angle += 45; break;
                 case 39: $angle -= 45; break;
             }
-            if($angle > 350 || $angle < -350) $angle = 0;
+            if($angle < 0) $angle = 360 + $angle;
+            if($angle > 350) $angle = 0;
             $tower->angle = $angle;
             return true;
         }
@@ -226,61 +227,55 @@ class Logic {
 
     // лететь выстрелом
     public function shoot($id, $angle){
-        $tower = $this->getTower($id);
-        $shot = $this->getShot($id);
-        $mapHeight  = count($this->struct->map)-1;
-        $mapWidth = count($this->struct->map[0])-1;
-        $shot->x = $tower->x;
-        $shot->y = $tower->y;
-        $x = $shot->x;
-        $y = $shot->y;
-        if ($angle==0 || $angle==360){
-            while ($x <= $mapWidth) {
-                $x++;
+        if($id) {
+            $shot = $this->getShot($id);
+            $mapHeight  = count($this->struct->map)-1;
+            $mapWidth = count($this->struct->map[0])-1;
+            $x = $shot->x;
+            $y = $shot->y;
+            if($x <= $mapWidth && $x >= 0 && $y <= $mapHeight && $y >= 0) {
+                if($angle >= 0 && $angle <= 180) {//правая сторона
+                    if($angle >= 0 && $angle <= 90) {//верхняя часть
+                        switch ($angle) {
+                            case 0: $y--; break;
+                            case 90: $x++; break;
+                            default:
+                                $x++;
+                                $y--;
+                            break;
+                        }
+                    } else {//нижняя часть
+                        switch ($angle) {
+                            case 180: $y++; break;
+                            default:
+                                $x++;
+                                $y++;
+                            break;
+                        }
+                    }
+                } else {//левая сторона
+                    if($angle >= 270 && $angle < 360) {//верхняя часть
+                        switch ($angle) {
+                            case 270: $x--; break;
+                            default:
+                                $x--;
+                                $y--;
+                            break;
+                        }
+                    } else {//нижняя часть
+                        $x--;
+                        $y++;
+                    }
+                }
+                $shot->x = $x;
+                $shot->y = $y;
+
+                return true;
             }
+        } else {
+            $this->delShot($id);
         }
-        if ($angle==45){
-            while ($x <= $mapWidth && $y != 0){
-                $x++;
-                $y--;
-            }
-        }
-        if ($angle==90){
-            while ($y != 0){
-                $y--;
-            }
-        }
-        if ($angle==135){
-            while ($x != 0 && $y != 0){
-                $x--;
-                $y--;
-            }
-        }
-        if ($angle==180){
-            while ($x != 0){
-                $x--;
-            }
-        }
-        if ($angle == 225){
-            while ($x != 0 && $y<=$mapHeight){
-                $x--;
-                $y++;
-            }
-        }
-        if ($angle == 270){
-            while ($y<=$mapHeight){
-                $y++;
-            }
-        }
-        if ($angle == 315){
-            while ($x <= $mapWidth && $y<=$mapHeight){
-                $x++;
-                $y++;
-            }
-        }
-        $shot->x = $x;
-        $shot->y = $y;
-        return true;
+        return false;
     }
 
     public function delShot($id){

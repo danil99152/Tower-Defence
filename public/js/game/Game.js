@@ -92,7 +92,7 @@ function Game(options) {
         if(tower && tower.type) {
             const sprite = SPRITES.tower;
             canvas.sprite(sprite.img,
-                sprite.sprite[tower.type - 0].x, sprite.sprite[tower.type - 0].y, 256, 454,
+                sprite.sprite[tower.type].x, sprite.sprite[tower.type].y, 256, 454,
                 tower.x * SIZE, tower.y * SIZE, SIZE, SIZE);
         }
     }
@@ -101,17 +101,17 @@ function Game(options) {
         if (mob && mob.type) {
             const sprite = SPRITES.mob;
             canvas.sprite(sprite.img,
-                sprite.sprite[mob.type - 0].x, sprite.sprite[mob.type - 0].y, 171, 270,
+                sprite.sprite[mob.type].x, sprite.sprite[mob.type].y, 171, 270,
                 mob.x * SIZE, mob.y * SIZE, SIZE, SIZE);
         }
     }
 
-    function printRoadSprite(road) {
-        if(road && road.type) {
-            const sprite = SPRITES.road;
+    function printShotSprite(shot) {
+        if(shot && shot.type) {
+            const sprite = SPRITES.shot;
             canvas.sprite(sprite.img,
-                sprite.sprite[road.type - 0].x, sprite.sprite[road.type - 0].y, SIZE, SIZE,
-                road.x * SIZE, road.y * SIZE, 32, 32);
+                sprite.sprite[shot.type].x, sprite.sprite[shot.type].y, 64, 64,
+                shot.x * SIZE, shot.y * SIZE, SIZE, SIZE);
         }
     }
 
@@ -125,9 +125,10 @@ function Game(options) {
         }
         //нарисовать мобов на карте
         data.mobs.forEach(mob => printMobSprite(mob));
+        //нарисовать выстрелы на карте
+        data.shots.forEach(shot => printShotSprite(shot));
         // нарисовать башни на карте
         data.towers.forEach(tower => printTowerSprite(tower));
-        //нарисовать выстрелы на карте
     }
 
     async function refresh() {
@@ -159,8 +160,9 @@ function Game(options) {
         }
         else {
                 if(event.keyCode > 36 && event.keyCode < 40) {
-                    $temp = await server.changeTower(event.keyCode);
-                    console.log($temp);
+                    //var result = 
+                    server.changeTower(event.keyCode);
+                    //console.log(result);
                 }
             };
         });

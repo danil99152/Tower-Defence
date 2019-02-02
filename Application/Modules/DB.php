@@ -78,17 +78,11 @@ class DB {
         $user_id = $this->db->query($query)->fetchObject('stdClass');
         return $this->getMobByUserId($user_id);
     }
-    /*
+
     public function getShotByUserId($user_id) {
         $query = 'SELECT * FROM shot WHERE user_id="' . $user_id . '"';
         return $this->db->query($query)->fetchObject('stdClass');
     }
-
-    public function getShotByToken($token){
-        $query = 'SELECT id FROM user WHERE token="' . $token . '"';
-        $user_id = $this->db->query($query)->fetchObject('stdClass');
-        return $this->getShotByUserId($user_id);
-    }*/
 
     public function addTower($options){
         //print_r($options);
@@ -144,12 +138,12 @@ class DB {
         return $this->db->query($query)->fetchObject('stdClass');
     }
 
-    public function updateTowers($mapId, $tower){
+    public function updateTowers($tower){
         $query = 'UPDATE tower SET angle="' . $tower->angle . '" WHERE user_id=' . $tower->gamerId;
         return $this->db->query($query);
     }
 
-    public function updateMobs($mapId, $mob){
+    public function updateMobs($mob){
         $query = 'UPDATE mob SET
             life = ' . $mob->life . ',
             x = ' . $mob->x . ',
@@ -158,10 +152,12 @@ class DB {
         return $this->db->query($query);
     }
 
-    public function updateShots($mapId, $shot){
+    public function updateShots($shot){
         $query = 'UPDATE shot SET
             angle = ' . $shot->angle . ',
-            status = ' . $shot->status . '
+            status = ' . $shot->status . ',
+            x = ' . $shot->x . ',
+            y = ' . $shot->y . '
             WHERE tower_id=' . $shot->towerId;
         return $this->db->query($query);
     }

@@ -23,6 +23,8 @@ class Game {
         $this->logic->delTower($userId);
         $this->db->deleteMob($userId);
         $this->logic->killMob($userId);
+        $this->db->deleteShot($userId);
+        $this->logic->delShot($userId);
     }
 
     private function addTower($userId) {
@@ -64,6 +66,17 @@ class Game {
         return true;
     }
 
+    public function moveShot($userId) {
+        $shot = $this->db->getShotByUserId($userId);
+        if($shot->status) {
+            $this->logic->shoot($shot->id, $shot->angle);
+            foreach ($this->struct->shots as $shot) {
+                $this->db->updateShots($shot);
+            }
+        }
+        return false;
+    }
+
     public function getCommand() {
         return $this->input->getCommand();
     }
@@ -73,7 +86,6 @@ class Game {
         switch ($name) {
             case $COMMANDS->ADD_TOWER    : return $this->addTower($options->userId);
             case $COMMANDS->ADD_MOB      : return $this->addMob  ($options->userId);
-            case $COMMANDS->SHOTING      : return $this->addShot ($options->userId);
             case $COMMANDS->MOVE_MOB     : return $this->moveMob ($options);
             case $COMMANDS->CHANGE_TOWER : return $this->changeTower($options);
         }
@@ -118,15 +130,15 @@ class Game {
             if ($map) {
                 // записать башни
                 foreach ($this->struct->towers as $tower) {
-                    $this->db->updateTowers($mapId, $tower);
+                    $this->db->updateTowers($tower);
                 }
                 // записать города
                 foreach ($this->struct->mobs as $mob) {
-                    $this->db->updateMobs($mapId, $mob);
+                    $this->db->updateMobs($mob);
                 }
                 // записать выстрелы
                 foreach ($this->struct->shots as $shot) {
-                    $this->db->updateShots($mapId, $shot);
+                    $this->db->updateShots($shot);
                 }
 
                 return true;
