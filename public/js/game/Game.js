@@ -23,6 +23,10 @@ function Game(options) {
     const imgRoad = new Image();
     imgRoad.src = "public/img/sprites/road.jpg";
 
+    // спрайты выстрелов на карте
+    const imgShot = new Image();
+    imgShot.src = "public/img/sprites/shot.png";
+
     const SIZE = 57;
     const stdSprite = [
         { x: 0, y: 0 },
@@ -56,6 +60,15 @@ function Game(options) {
         },
         mob: {
             img: imgMob,
+            sprite: [
+                { x: 0, y: 0 },
+                { x: 80, y: 0},
+                { x: 160, y: 0},
+                { x: 240, y: 0}
+            ]
+        },
+        shot: {
+            img: imgShot,
             sprite: [
                 { x: 0, y: 0 },
                 { x: 80, y: 0},
@@ -112,10 +125,9 @@ function Game(options) {
         }
         //нарисовать мобов на карте
         data.mobs.forEach(mob => printMobSprite(mob));
-        // нарисовать дороги(через passability)
-        //data.roads.forEach(road => printRoadSprite(road));
         // нарисовать башни на карте
         data.towers.forEach(tower => printTowerSprite(tower));
+        //нарисовать выстрелы на карте
     }
 
     async function refresh() {
@@ -139,20 +151,19 @@ function Game(options) {
 
 
     function canvasKeyPress(method) {
+        $(document).on('keydown', async event => {
         if(method === 'addMob') {
-            $(document).on('keydown', async event => {
                 if(event.keyCode > 36 && event.keyCode < 41) {
                     server.moveMob(event.keyCode);
-                }
-            });
-        } else {
-            $(document).on('keydown', async event => {
+                };
+        }
+        else {
                 if(event.keyCode > 36 && event.keyCode < 40) {
                     $temp = await server.changeTower(event.keyCode);
                     console.log($temp);
                 }
-            });
-        }
+            };
+        });
     }
 
     function init() {
