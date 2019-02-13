@@ -114,7 +114,7 @@ class DB {
         return $this->db->query($query);
     }
 
-    public function  deleteMob($user_id){
+    public function deleteMob($user_id){
         $query = 'DELETE FROM mob WHERE  user_id= "'.$user_id.'" ';
         return $this->db->query($query);
     }

@@ -115,7 +115,6 @@ class Logic {
                 }
             } else {
                 $this->killMob($id);
-                //$this->finishMob();
             }
         }
         return false;

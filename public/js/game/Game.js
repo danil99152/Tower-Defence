@@ -27,7 +27,7 @@ function Game(options) {
     const imgShot = new Image();
     imgShot.src = "public/img/sprites/shot.png";
 
-    const SIZE = 57;
+    const SIZE = window.innerHeight * 0.085;
     const stdSprite = [
         { x: 0, y: 0 },
         { x: SIZE, y: 0 },
