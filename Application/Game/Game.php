@@ -95,7 +95,10 @@ class Game {
     public function changeTower($options){
         $tower = $this->db->getTowerByUserId($options->userId);
         if($options->change == 38) {
-            $this->addShot($options->userId, $tower->id);
+            $delthisShot = $this->addShot($options->userId, $tower->id);
+            $shot = $this->db->getShotByUserId($options->userId);
+            if($shot) $this->db->updateShots($tower->id);
+            if(!$delthisShot) $this->deleteShot($options->userId);
         } else {
             $this->logic->rotateTower($options->change, $tower->id);
         }
@@ -103,7 +106,8 @@ class Game {
     }
     public function moveMob($options) {
         $mob = $this->db->getMobByUserId($options->userId);
-        $this->logic->moveMob($options->move, $mob->id);
+        $temp = $this->logic->moveMob($options->move, $mob->id);
+        if(!$temp) $this->delOld($options->userId);
         return true;
     }
 

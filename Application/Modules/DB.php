@@ -133,7 +133,7 @@ class DB {
         return $this->db->query($query);
     }
 
-    public function  deleteShot($user_id){
+    public function deleteShot($user_id){
         $query = 'DELETE FROM shot WHERE  user_id= "'.$user_id.'" ';
         return $this->db->query($query)->fetchObject('stdClass');
     }
