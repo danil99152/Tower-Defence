@@ -8,7 +8,7 @@ class Logic {
         $this->struct = $struct;
     }
 
-    private function getMob($id){
+    public function getMob($id){
         if ($id){
             $mobs = $this->struct->mobs;
             foreach ($mobs as $mob){

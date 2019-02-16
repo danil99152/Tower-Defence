@@ -107,7 +107,7 @@ class Game {
     public function moveMob($options) {
         $mob = $this->db->getMobByUserId($options->userId);
         $temp = $this->logic->moveMob($options->move, $mob->id);
-        if(!$temp) $this->delOld($options->userId);
+        if(!$temp && !$this->logic->getMob($mob->id)) $this->delOld($options->userId);
         return true;
     }
 
