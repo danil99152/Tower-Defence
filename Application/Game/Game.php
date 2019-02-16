@@ -71,8 +71,14 @@ class Game {
         if($shot->status) {
             $flyShoot = $this->logic->shoot($shot->id, $shot->angle);
             $shoot = $this->logic->getShot($shot->id);
+            foreach ($this->struct->mobs as $mob) {
+                if($this->logic->hit($mob->id, $shot->id)) {
+                    $this->delOld($mob->gamerId);
+                    $this->db->deleteShot($userId);
+                }
+            }
             if($flyShoot) $this->db->updateShots($shoot);
-            else $this->db->deleteShot($options->userId);
+            else $this->db->deleteShot($userId);
         }
         return false;
     }

@@ -293,20 +293,19 @@ class Logic {
     }
 
     // попасть выстрелом
-    public function hit($options) {
-        if ($options) {
-            $mob = $this->getMob($options->id);
-            $shot= $this->getShot($options->id);
+    public function hit($mobId, $shotId) {
+        //print_r($mobId);
+        //print_r($shotId);
+        if ($mobId && $shotId) {
+            $mob = $this->getMob($mobId);
+            $shot = $this->getShot($shotId);
             if ($mob->x == $shot->x && $mob->y == $shot->y){
-                $this->delShot($options->id);
-                $this->killMob($options->id);
-                return true;
-            }
-            else {
-                $this->shoot($options->id);
+                $this->delShot($shotId);
+                $this->killMob($mobId);
                 return true;
             }
         }
+        return false;
     }
 
     // нанести какой-нибудь урон
