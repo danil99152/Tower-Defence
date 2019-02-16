@@ -135,7 +135,7 @@ class DB {
 
     public function deleteShot($user_id){
         $query = 'DELETE FROM shot WHERE  user_id= "'.$user_id.'" ';
-        return $this->db->query($query)->fetchObject('stdClass');
+        return $this->db->query($query);
     }
 
     public function updateTowers($tower){
@@ -158,7 +158,7 @@ class DB {
             status = ' . $shot->status . ',
             x = ' . $shot->x . ',
             y = ' . $shot->y . '
-            WHERE tower_id=' . $shot->towerId;
+            WHERE user_id=' . $shot->gamerId;
         return $this->db->query($query);
     }
 }

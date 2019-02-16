@@ -69,10 +69,10 @@ class Game {
     public function moveShot($userId) {
         $shot = $this->db->getShotByUserId($userId);
         if($shot->status) {
-            $this->logic->shoot($shot->id, $shot->angle);
-            foreach ($this->struct->shots as $shot) {
-                $this->db->updateShots($shot);
-            }
+            $flyShoot = $this->logic->shoot($shot->id, $shot->angle);
+            $shoot = $this->logic->getShot($shot->id);
+            if($flyShoot) $this->db->updateShots($shoot);
+            else $this->db->deleteShot($options->userId);
         }
         return false;
     }
@@ -95,10 +95,7 @@ class Game {
     public function changeTower($options){
         $tower = $this->db->getTowerByUserId($options->userId);
         if($options->change == 38) {
-            $delthisShot = $this->addShot($options->userId, $tower->id);
-            $shot = $this->db->getShotByUserId($options->userId);
-            if($shot) $this->db->updateShots($tower->id);
-            if(!$delthisShot) $this->deleteShot($options->userId);
+            $this->addShot($options->userId, $tower->id);
         } else {
             $this->logic->rotateTower($options->change, $tower->id);
         }

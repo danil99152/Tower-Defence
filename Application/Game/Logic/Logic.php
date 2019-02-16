@@ -204,7 +204,7 @@ class Logic {
         return false;
     }
 
-    private function getShot($id){
+    public function getShot($id){
         if ($id){
             $shots = $this->struct->shots;
             foreach ($shots as $shot){
@@ -293,8 +293,7 @@ class Logic {
     }
 
     // попасть выстрелом
-    public function hit($options)
-    {
+    public function hit($options) {
         if ($options) {
             $mob = $this->getMob($options->id);
             $shot= $this->getShot($options->id);
